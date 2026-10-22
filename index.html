@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller de Redes · Módulo 2: Segmentación y Asignación Eficiente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#122a44; --tinta2:#1d3d63; --papel:#fffdf6; --cielo:#f2f8fe;
+  --azul:#2478d0; --naranja:#ff7a3d; --amarillo:#ffc93c; --verde:#1e9e5a; --rojo:#e4572e;
+  --tiza:#6b87a6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Atkinson Hyperlegible',system-ui,sans-serif; font-size:17px; color:var(--tinta); line-height:1.55;
+  background:
+    radial-gradient(1100px 480px at 88% -120px,#cfe9ff 0%,transparent 60%),
+    repeating-linear-gradient(0deg,rgba(18,42,68,.05) 0 1px,transparent 1px 30px),
+    repeating-linear-gradient(90deg,rgba(18,42,68,.05) 0 1px,transparent 1px 30px),
+    var(--cielo);
+}
+code,.mono{font-family:'Space Mono',monospace}
+h1,h2,h3,.bungee{font-family:'Bungee',cursive;font-weight:400;letter-spacing:.5px}
+img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.oculto{display:none!important}
+
+/* ── cinta superior ─────────────────────────── */
+.cinta{background:var(--tinta);color:var(--amarillo);overflow:hidden;font-family:'Space Mono',monospace;font-size:.82rem;border-bottom:4px solid var(--amarillo)}
+.cinta-track{display:flex;gap:3rem;white-space:nowrap;padding:7px 0;width:max-content;animation:desfile 26s linear infinite}
+@keyframes desfile{to{transform:translateX(-50%)}}
+
+/* ── topbar + sellos ─────────────────────────── */
+.topbar{position:sticky;top:0;z-index:50;background:var(--papel);border-bottom:3px solid var(--tinta);box-shadow:0 4px 0 rgba(18,42,68,.12)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.logo{font-family:'Bungee';font-size:1.05rem;background:var(--amarillo);border:3px solid var(--tinta);padding:5px 12px;border-radius:10px;box-shadow:4px 4px 0 var(--tinta);transform:rotate(-1.5deg)}
+.sellos{display:flex;gap:8px;flex-wrap:wrap}
+.sello{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;border:3px dashed var(--tiza);color:var(--tiza);background:#fff;transition:transform .3s}
+.sello.ganado{border:3px solid var(--tinta);background:var(--amarillo);box-shadow:3px 3px 0 var(--tinta);transform:rotate(-6deg)}
+.sello.ganado:nth-child(even){transform:rotate(7deg)}
+
+/* ── hero ───────────────────────────────────── */
+.hero{padding:52px 0 36px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.modulo-tag{display:inline-block;font-family:'Bungee';font-size:.8rem;background:var(--tinta);color:#fff;padding:6px 14px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.12}
+.resaltado{display:inline-block;background:var(--amarillo);padding:.02em .18em;border:3px solid var(--tinta);border-radius:8px;transform:rotate(-1deg);box-shadow:5px 5px 0 var(--naranja)}
+.bajada{margin-top:16px;font-size:1.08rem;max-width:56ch}
+.logros{list-style:none;margin-top:18px;display:grid;gap:8px}
+.logros li{background:#fff;border:3px solid var(--tinta);border-radius:10px;padding:8px 14px;box-shadow:4px 4px 0 rgba(18,42,68,.9);font-weight:700;transition:transform .2s}
+.logros li:hover{transform:translateX(6px)}
+.bitradio{background:var(--tinta);border:4px solid var(--tinta);border-radius:18px;padding:22px;box-shadow:9px 9px 0 var(--azul);transform:rotate(1.4deg)}
+.bitradio h3{color:var(--amarillo);font-size:1rem;margin-bottom:12px}
+#heroBits{display:grid;grid-template-columns:repeat(16,1fr);gap:5px}
+#heroBits span{font-family:'Space Mono',monospace;font-size:.8rem;text-align:center;padding:5px 0;border-radius:5px;background:#21426b;color:#9fc3ef;transition:background .15s}
+#heroBits span.on{background:var(--amarillo);color:var(--tinta)}
+.bitradio p{color:#cfe3ff;font-size:.9rem;margin-top:12px}
+
+/* ── señales de estación ─────────────────────── */
+section{padding:44px 0}
+.senal{margin-bottom:28px}
+.senal-num{display:inline-block;font-family:'Bungee';font-size:.85rem;background:var(--rojo);color:#fff;padding:6px 14px;border-radius:8px;border:3px solid var(--tinta);box-shadow:4px 4px 0 var(--tinta);transform:rotate(-2deg)}
+.senal h2{font-size:clamp(1.5rem,3.4vw,2.3rem);margin:12px 0 6px}
+.senal p{max-width:70ch;font-size:1.02rem}
+
+/* ── tarjetas sticker ───────────────────────── */
+.sticker{background:#fff;border:3px solid var(--tinta);border-radius:16px;box-shadow:8px 8px 0 var(--tinta);transition:transform .25s,box-shadow .25s}
+.sticker:hover{transform:translate(-3px,-3px);box-shadow:12px 12px 0 var(--tinta)}
+
+/* ── botones ────────────────────────────────── */
+.btn{font-family:'Bungee';font-size:.82rem;border:3px solid var(--tinta);border-radius:12px;padding:10px 18px;cursor:pointer;box-shadow:4px 4px 0 var(--tinta);transition:transform .12s,box-shadow .12s;background:#fff;color:var(--tinta)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+.btn-azul{background:var(--azul);color:#fff}.btn-verde{background:var(--verde);color:#fff}
+.btn-rojo{background:var(--rojo);color:#fff}.btn-amarillo{background:var(--amarillo)}
+.btn-gris{background:#e8eef6}.btn-tinta{background:var(--tinta);color:var(--amarillo)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── ciudad ─────────────────────────────────── */
+.ciudad-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:26px;align-items:start}
+.ciudad-marco{padding:16px;background:#fff}
+.ciudad{width:100%;height:auto;display:block;border-radius:10px}
+.ciudad .orden-layer{display:none}
+.ciudad.orden .orden-layer{display:inline}
+.ciudad.orden .caos-layer{display:none}
+.ruido{stroke:var(--rojo);stroke-width:3;fill:none;stroke-dasharray:7 7;animation:tiembla .5s steps(2) infinite}
+@keyframes tiembla{to{stroke-dashoffset:-14}}
+.zt{font-family:'Bungee';font-size:14px;fill:var(--tinta)}
+.panel-ciudad{padding:22px;display:grid;gap:14px}
+.panel-ciudad h3{font-size:1rem}
+.panel-ciudad ul{list-style:none;display:grid;gap:8px;font-size:.95rem}
+.panel-ciudad li{border-left:6px solid var(--amarillo);padding-left:10px}
+.chip{display:inline-block;font-family:'Space Mono',monospace;font-size:.82rem;background:#fff;border:2.5px solid var(--tinta);border-radius:8px;padding:3px 9px;margin:2px}
+
+/* ── calle de 32 bits ───────────────────────── */
+.calle-panel{padding:26px;background:#fff}
+.calle-scroll{overflow-x:auto;padding-top:34px}
+.calle-inner{position:relative;min-width:640px}
+.calle{display:grid;grid-template-columns:repeat(32,1fr);gap:3px}
+.bitcell{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:.85rem;border:2.5px solid var(--tinta);border-radius:6px;transition:background .3s,color .3s}
+.bitcell.uno{background:var(--azul);color:#fff}
+.bitcell.cero{background:var(--amarillo);color:var(--tinta)}
+.bitcell.oct{margin-left:10px}
+.divisor{position:absolute;top:-8px;bottom:-8px;width:0;border-left:6px dashed var(--rojo);transition:left .15s;pointer-events:none}
+.banderin{position:absolute;top:-34px;transform:translateX(-50%);background:var(--rojo);color:#fff;font-family:'Bungee';font-size:.7rem;padding:4px 8px;border-radius:6px;border:2.5px solid var(--tinta);white-space:nowrap}
+.calle-leyenda{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;margin-top:10px;min-width:640px}
+input[type=range]{accent-color:var(--rojo);width:100%;height:28px;cursor:grab}
+.lecturas{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.lectura{background:var(--papel);border:3px solid var(--tinta);border-radius:12px;padding:8px 14px;box-shadow:4px 4px 0 rgba(18,42,68,.85)}
+.lectura small{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--tiza);font-weight:700}
+.lectura code{font-size:.95rem;font-weight:700}
+
+/* ── laboratorio AND ────────────────────────── */
+.and-panel{margin-top:30px;padding:26px;background:#eef5fd}
+.and-panel h3{font-size:1.05rem;margin-bottom:14px}
+.and-controles{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.and-controles select,.and-controles input{font-family:'Space Mono',monospace;border:3px solid var(--tinta);border-radius:10px;padding:8px 10px;font-size:.9rem;background:#fff}
+.bitrow{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin-bottom:6px}
+.bitrow .b{font-family:'Space Mono',monospace;font-size:.72rem;text-align:center;padding:4px 0;border:2px solid var(--tinta);border-radius:4px;background:#fff}
+.bitrow .b.sep{margin-right:9px}
+.bitrow.fila-ip .b{background:#dcecfd}
+.bitrow.fila-mask .b.uno{background:var(--azul);color:#fff}
+.bitrow.fila-mask .b.cero{background:var(--amarillo)}
+.bitrow.fila-res .b{background:var(--verde);color:#fff;font-weight:700}
+.fila-tag{font-family:'Bungee';font-size:.72rem;margin:8px 0 4px}
+#andResult{margin-top:14px;font-weight:700;font-size:1.02rem;background:#fff;border:3px solid var(--verde);border-radius:12px;padding:12px 16px}
+
+/* ── conceptos (dúos) ───────────────────────── */
+.duo{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;margin-bottom:46px}
+.duo.rev .duo-art{order:-1}
+.duo-txt .kicker{font-family:'Bungee';font-size:.75rem;display:inline-block;padding:5px 12px;border-radius:999px;border:2.5px solid var(--tinta);margin-bottom:12px}
+.duo-txt h3{font-size:1.35rem;margin-bottom:10px}
+.duo-txt p{margin-bottom:10px}
+.duo-art{padding:18px;border-radius:18px}
+.nota-caja{border:3px dashed var(--tinta);border-radius:12px;padding:12px 16px;background:#fffbe9;margin-top:10px;font-size:.95rem}
+.vs-tabla{width:100%;border-collapse:collapse;margin-top:12px;background:#fff;border:3px solid var(--tinta)}
+.vs-tabla th{background:var(--tinta);color:var(--amarillo);font-family:'Bungee';font-weight:400;font-size:.8rem;padding:8px}
+.vs-tabla td{border:2px solid var(--tinta);padding:8px 10px;font-size:.92rem}
+
+/* ── fórmula ────────────────────────────────── */
+.formula-banda{background:var(--tinta);color:#fff;border-radius:22px;padding:36px 30px;box-shadow:10px 10px 0 var(--amarillo)}
+.formula-gigante{font-family:'Bungee';font-size:clamp(1.6rem,4.5vw,3rem);color:var(--amarillo);text-align:center}
+.formula-gigante small{display:block;font-size:.95rem;color:#cfe3ff;font-family:'Atkinson Hyperlegible';margin-top:6px}
+.formula-lab{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px;align-items:start}
+.asientos{display:flex;flex-wrap:wrap;gap:6px;min-height:60px;background:#1d3d63;border-radius:12px;padding:14px}
+.silla{width:26px;height:26px;border-radius:6px;background:var(--verde);border:2px solid #0b1f36}
+.silla.red{background:var(--rojo)} .silla.bcast{background:var(--naranja)}
+.reservadas{display:grid;gap:12px}
+.reservada{background:#fff;color:var(--tinta);border-radius:12px;padding:12px 16px;border:3px solid var(--amarillo)}
+.potencias{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+
+/* ── misiones ───────────────────────────────── */
+.caja-herr{background:#fffbe9;border:3px solid var(--tinta);border-radius:16px;padding:18px 22px;margin-bottom:26px}
+.caja-herr h3{font-size:.95rem;margin-bottom:10px}
+.misiones-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mision{background:#fff;overflow:hidden}
+.mision-cabeza{display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:3px dashed var(--tiza)}
+.mision-emoji{font-size:2.1rem;background:var(--cielo);border:3px solid var(--tinta);border-radius:12px;width:58px;height:58px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mision-nombre{font-family:'Bungee';font-size:.92rem;line-height:1.3}
+.mision-nombre em{font-style:normal;font-family:'Atkinson Hyperlegible';font-size:.82rem;color:var(--tiza)}
+.mision-datos{font-size:.85rem;display:block;margin-top:3px}
+.mision-cuerpo{padding:18px}
+.reto{background:#eef5fd;border-left:6px solid var(--azul);padding:10px 14px;border-radius:0 10px 10px 0;font-size:.93rem;margin-bottom:14px}
+.campos{display:grid;gap:10px}
+.campos label{font-weight:700;font-size:.88rem;display:grid;gap:4px}
+.campos small{font-weight:400;color:var(--tiza)}
+.campo{font-family:'Space Mono',monospace;font-size:.95rem;border:3px solid var(--tinta);border-radius:10px;padding:8px 12px;width:100%}
+.campo:focus{outline:3px solid var(--amarillo)}
+.mision-acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pista-panel,.sol-panel{margin-top:14px;border-radius:12px;padding:14px 16px;font-size:.93rem}
+.pista-panel{background:#fffbe9;border:3px dashed var(--naranja)}
+.sol-panel{background:#e2f6e9;border:3px solid var(--verde)}
+.sol-panel table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:.8rem}
+.sol-panel td,.sol-panel th{border:2px solid var(--tinta);padding:5px 8px}
+.sol-panel th{background:var(--tinta);color:var(--amarillo);font-family:'Bungee';font-weight:400;font-size:.68rem}
+.mision.resuelta{border-color:var(--verde);box-shadow:8px 8px 0 var(--verde)}
+.mision.resuelta .mision-cabeza{background:#e2f6e9}
+.bad{border-color:var(--rojo)!important;background:#ffe7de;animation:sacudida .3s 2}
+.ok{border-color:var(--verde)!important;background:#e2f6e9}
+@keyframes sacudida{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.contador{font-family:'Bungee';background:var(--verde);color:#fff;border:3px solid var(--tinta);border-radius:999px;padding:6px 16px;box-shadow:4px 4px 0 var(--tinta)}
+
+/* ── plan maestro / pasos ───────────────────── */
+.paso-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.paso-tab{font-family:'Bungee';font-size:.78rem;border:3px solid var(--tinta);background:#fff;border-radius:12px;padding:10px 16px;cursor:pointer;box-shadow:4px 4px 0 var(--tinta)}
+.paso-tab.activa{background:var(--tinta);color:var(--amarillo)}
+.paso-panel{padding:26px;background:#fff}
+.termometro{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.termo-chip{font-size:.85rem;font-weight:700;border:3px solid var(--tiza);border-radius:999px;padding:6px 14px;background:#fff;color:var(--tiza)}
+.termo-chip.listo{border-color:var(--verde);background:#e2f6e9;color:var(--tinta)}
+.pav{cursor:pointer;transition:filter .2s}
+.pav:hover{filter:drop-shadow(0 0 6px rgba(36,120,208,.7))}
+.pav.activa rect:first-of-type{stroke-width:6}
+.pav-t{font-family:'Bungee';font-size:15px;fill:#fff}
+.pav-s{font-size:12px;fill:var(--tinta);font-weight:700}
+.pav-ip{font-size:11px;fill:var(--tinta2);font-family:'Space Mono',monospace}
+#pavDetalle{margin-top:16px;border:3px solid var(--azul);border-radius:14px;padding:16px;background:#eef5fd;font-size:.95rem}
+.hueco{font-family:'Space Mono',monospace;width:70px;text-align:center;border:3px solid var(--tinta);border-radius:8px;padding:4px;font-size:.95rem;background:#fffbe9}
+.hueco.ancho{width:170px}
+.frase-hueco{background:#fffbe9;border:3px dashed var(--naranja);border-radius:12px;padding:14px 18px;margin-bottom:12px;font-size:1.02rem}
+#tablaSubredes table,#tablaPlan table{width:100%;border-collapse:collapse;margin-top:12px;font-family:'Space Mono',monospace;font-size:.8rem;background:#fff}
+#tablaSubredes th,#tablaPlan th{background:var(--tinta);color:var(--amarillo);font-family:'Bungee';font-weight:400;font-size:.7rem;padding:8px}
+#tablaSubredes td,#tablaPlan td{border:2px solid var(--tinta);padding:7px 9px}
+.juego-carta{max-width:520px;margin:0 auto;text-align:center;padding:26px}
+.juego-dev{font-size:1.15rem;font-weight:700;margin:14px 0}
+.juego-dev .emo{font-size:2.6rem;display:block;margin-bottom:8px}
+.juego-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.juego-feedback{margin-top:16px;font-weight:700;min-height:52px;font-size:.95rem}
+.sel-frase{font-family:'Atkinson Hyperlegible';border:3px solid var(--tinta);border-radius:8px;padding:5px;font-size:.92rem;background:#fffbe9}
+#certificado{border:6px double var(--tinta);border-radius:18px;padding:34px;text-align:center;background:repeating-linear-gradient(45deg,#fffdf6 0 14px,#fdf6df 14px 28px)}
+#certificado h3{font-size:1.6rem;color:var(--rojo)}
+#certNombre{font-family:'Bungee';font-size:clamp(1.3rem,4vw,2.2rem);color:var(--azul);margin:12px 0}
+.sello-cert{width:90px;height:90px;margin:14px auto 0;border-radius:50%;background:var(--amarillo);border:4px solid var(--tinta);display:flex;align-items:center;justify-content:center;font-size:2.4rem;transform:rotate(-10deg);box-shadow:4px 4px 0 var(--tinta)}
+
+/* ── guía bolsillo + footer ─────────────────── */
+.guia{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px}
+.guia span{background:#fff;border:3px solid var(--tinta);border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:4px 4px 0 var(--tinta);transition:transform .2s}
+.guia span:hover{transform:rotate(-2deg) scale(1.04)}
+footer{background:var(--tinta);color:#cfe3ff;padding:34px 0;margin-top:50px;text-align:center}
+footer .bungee{color:var(--amarillo)}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--tinta);color:var(--amarillo);font-family:'Bungee';font-size:.85rem;padding:12px 22px;border-radius:12px;border:3px solid var(--amarillo);transition:transform .35s;z-index:99}
+#toast.show{transform:translateX(-50%) translateY(0)}
+.confeti{position:fixed;top:-20px;width:12px;height:12px;z-index:98;pointer-events:none;animation:cae 1.4s linear forwards}
+@keyframes cae{to{transform:translateY(105vh) rotate(540deg);opacity:.6}}
+
+@media(max-width:980px){
+  .hero .wrap,.ciudad-grid,.duo,.formula-lab{grid-template-columns:1fr}
+  .duo.rev .duo-art{order:0}
+  .misiones-grid{grid-template-columns:1fr}
+}
+@media print{
+  body *{visibility:hidden}
+  #certificado,#certificado *{visibility:visible}
+  #certificado{position:absolute;left:0;top:0;width:100%;box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<!-- CINTA DE PAQUETES -->
+<div class="cinta"><div class="cinta-track">
+  <span>▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ DHCP AL RESCATE ▚ 192.168.0.0 ES TERRITORIO PRIVADO ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ </span>
+  <span aria-hidden="true">▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ DHCP AL RESCATE ▚ 192.168.0.0 ES TERRITORIO PRIVADO ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ </span>
+</div></div>
+
+<!-- TOPBAR CON SELLOS -->
+<div class="topbar"><div class="wrap">
+  <div class="logo">🌎 REDVILLE · TALLER DE REDES</div>
+  <div class="sellos" id="sellos" title="Tus sellos de logro"></div>
+</div></div>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap">
+  <div class="reveal">
+    <span class="modulo-tag">MÓDULO 2 · ORDEN LÓGICO Y GESTIÓN DE RECURSOS</span>
+    <h1>La segmentación de la red <span class="resaltado">y la asignación eficiente</span></h1>
+    <p class="bajada">Una red sin segmentar es como una ciudad sin muros ni barrios: el ruido (llamado <b>broadcast</b>) colapsa toda la comunicación. En este taller aprenderás a construir fronteras, repartir direcciones y administrar tus <b>32 bits</b> como todo un ingeniero o ingeniera. 🧱✨</p>
+    <ul class="logros">
+      <li>🧱 Entender la máscara de subred como la frontera de tu barrio digital.</li>
+      <li>✨ Dominar la Fórmula de Oro: <code>Hosts útiles = 2ⁿ − 2</code>.</li>
+      <li>🏆 Diseñar el Plan Maestro de la red de una escuela rural.</li>
+    </ul>
+  </div>
+  <div class="bitradio reveal">
+    <h3>📻 BIT-RADIO: así se ve una IPv4 por dentro</h3>
+    <div id="heroBits"></div>
+    
