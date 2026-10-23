@@ -32,7 +32,7 @@ img,svg{max-width:100%}
 
 /* ── cinta superior ─────────────────────────── */
 .cinta{background:var(--tinta);color:var(--amarillo);overflow:hidden;font-family:'Space Mono',monospace;font-size:.82rem;border-bottom:4px solid var(--amarillo)}
-.cinta-track{display:flex;gap:3rem;white-space:nowrap;padding:7px 0;width:max-content;animation:desfile 26s linear infinite}
+.cinta-track{display:flex;gap:3rem;white-space:nowrap;padding:7px 0;width:max-content;animation:desfile 28s linear infinite}
 @keyframes desfile{to{transform:translateX(-50%)}}
 
 /* ── topbar + sellos ─────────────────────────── */
@@ -66,7 +66,9 @@ section{padding:44px 0}
 .senal{margin-bottom:28px}
 .senal-num{display:inline-block;font-family:'Bungee';font-size:.85rem;background:var(--rojo);color:#fff;padding:6px 14px;border-radius:8px;border:3px solid var(--tinta);box-shadow:4px 4px 0 var(--tinta);transform:rotate(-2deg)}
 .senal h2{font-size:clamp(1.5rem,3.4vw,2.3rem);margin:12px 0 6px}
-.senal p{max-width:70ch;font-size:1.02rem}
+.senal p{max-width:74ch;font-size:1.02rem}
+.sub-bloque{margin-bottom:30px;padding:26px}
+.sub-bloque h3{font-size:1.05rem;margin-bottom:10px}
 
 /* ── tarjetas sticker ───────────────────────── */
 .sticker{background:#fff;border:3px solid var(--tinta);border-radius:16px;box-shadow:8px 8px 0 var(--tinta);transition:transform .25s,box-shadow .25s}
@@ -80,6 +82,54 @@ section{padding:44px 0}
 .btn-rojo{background:var(--rojo);color:#fff}.btn-amarillo{background:var(--amarillo)}
 .btn-gris{background:#e8eef6}.btn-tinta{background:var(--tinta);color:var(--amarillo)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── PUENTE: balanza binaria ────────────────── */
+.balanza{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-top:14px}
+.pesa{cursor:pointer;border:3px solid var(--tinta);border-radius:12px;padding:12px 4px;text-align:center;background:#fff;box-shadow:4px 4px 0 var(--tinta);transition:all .15s;user-select:none}
+.pesa b{font-family:'Space Mono',monospace;display:block;font-size:1.15rem}
+.pesa small{font-size:.72rem;color:var(--tiza);font-weight:700}
+.pesa:hover{transform:translateY(-3px)}
+.pesa.on{background:var(--amarillo);transform:translateY(-5px)}
+.pesa.on small{color:var(--tinta)}
+.puente-lecturas{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.retos{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.reto{border:3px solid var(--tinta);border-radius:999px;padding:8px 16px;font-weight:700;background:#fff;box-shadow:3px 3px 0 var(--tinta);cursor:pointer;transition:transform .15s}
+.reto:hover{transform:translateY(-2px)}
+.reto.logrado{background:#e2f6e9;border-color:var(--verde);text-decoration:line-through}
+.conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.conv-panel{padding:22px}
+.conv-panel input{font-family:'Space Mono',monospace;font-size:1rem;border:3px solid var(--tinta);border-radius:10px;padding:8px 12px;width:180px}
+.paso-d2b{padding:5px 10px;border-bottom:1px dashed #c6d4e2;font-family:'Space Mono',monospace;font-size:.83rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ok-chip{background:#e2f6e9;border-color:var(--verde)}
+.no-chip{background:#e8eef6;color:var(--tiza)}
+.fila-octs{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.octbox{border:3px solid var(--tinta);border-radius:10px;overflow:hidden;background:#fff}
+.octdec{display:block;text-align:center;font-family:'Space Mono',monospace;font-weight:700;background:var(--cielo);border-bottom:2px solid var(--tinta);font-size:.9rem;padding:2px 6px}
+.octbits{display:grid;grid-template-columns:repeat(8,1fr)}
+.octbits i{font-style:normal;font-family:'Space Mono',monospace;font-size:.78rem;text-align:center;padding:5px 3px;border-right:1px solid #dbe6f2}
+.octbits i:last-child{border-right:none}
+.octbits i.u{background:var(--azul);color:#fff}
+.bitrow{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin-bottom:6px}
+.bitrow .b{font-family:'Space Mono',monospace;font-size:.72rem;text-align:center;padding:4px 0;border:2px solid var(--tinta);border-radius:4px;background:#fff}
+.bitrow .b.sep{margin-right:9px}
+.bitrow.fila-ip .b{background:#dcecfd}
+.bitrow.fila-mask .b.uno{background:var(--azul);color:#fff}
+.bitrow.fila-mask .b.cero{background:var(--amarillo)}
+.bitrow.fila-res .b{background:var(--verde);color:#fff;font-weight:700}
+.fila-tag{font-family:'Bungee';font-size:.72rem;margin:10px 0 4px}
+
+/* ── PUENTE: viaje ISP ──────────────────────── */
+.etg{transition:opacity .35s}
+.en-juego .etg{opacity:.28}
+.en-juego .etg.foco{opacity:1;filter:drop-shadow(0 0 6px rgba(255,201,60,.95))}
+.etapas-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.etapa-caja{margin-top:14px;border:3px solid var(--azul);border-radius:14px;background:#eef5fd;padding:16px 20px;font-size:.98rem}
+.pp{border:3px solid var(--tinta);border-radius:12px;padding:12px 16px;background:#fff;box-shadow:4px 4px 0 var(--tinta);font-family:'Space Mono',monospace;font-weight:700;display:inline-grid;gap:8px;justify-items:center}
+.pp .pp-btns{display:flex;gap:6px}
+.pp button{border:2.5px solid var(--tinta);border-radius:8px;padding:3px 9px;font-size:.72rem;font-weight:700;cursor:pointer;background:#fff}
+.pp.pub{background:#dcecfd;border-color:var(--azul)}
+.pp.priv{background:#e2f6e9;border-color:var(--verde)}
+.pp small{font-family:'Atkinson Hyperlegible';font-weight:400;font-size:.78rem;max-width:210px}
 
 /* ── ciudad ─────────────────────────────────── */
 .ciudad-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:26px;align-items:start}
@@ -120,14 +170,6 @@ input[type=range]{accent-color:var(--rojo);width:100%;height:28px;cursor:grab}
 .and-panel h3{font-size:1.05rem;margin-bottom:14px}
 .and-controles{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
 .and-controles select,.and-controles input{font-family:'Space Mono',monospace;border:3px solid var(--tinta);border-radius:10px;padding:8px 10px;font-size:.9rem;background:#fff}
-.bitrow{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin-bottom:6px}
-.bitrow .b{font-family:'Space Mono',monospace;font-size:.72rem;text-align:center;padding:4px 0;border:2px solid var(--tinta);border-radius:4px;background:#fff}
-.bitrow .b.sep{margin-right:9px}
-.bitrow.fila-ip .b{background:#dcecfd}
-.bitrow.fila-mask .b.uno{background:var(--azul);color:#fff}
-.bitrow.fila-mask .b.cero{background:var(--amarillo)}
-.bitrow.fila-res .b{background:var(--verde);color:#fff;font-weight:700}
-.fila-tag{font-family:'Bungee';font-size:.72rem;margin:8px 0 4px}
 #andResult{margin-top:14px;font-weight:700;font-size:1.02rem;background:#fff;border:3px solid var(--verde);border-radius:12px;padding:12px 16px}
 
 /* ── conceptos (dúos) ───────────────────────── */
@@ -165,7 +207,7 @@ input[type=range]{accent-color:var(--rojo);width:100%;height:28px;cursor:grab}
 .mision-nombre em{font-style:normal;font-family:'Atkinson Hyperlegible';font-size:.82rem;color:var(--tiza)}
 .mision-datos{font-size:.85rem;display:block;margin-top:3px}
 .mision-cuerpo{padding:18px}
-.reto{background:#eef5fd;border-left:6px solid var(--azul);padding:10px 14px;border-radius:0 10px 10px 0;font-size:.93rem;margin-bottom:14px}
+.reto-txt{background:#eef5fd;border-left:6px solid var(--azul);padding:10px 14px;border-radius:0 10px 10px 0;font-size:.93rem;margin-bottom:14px}
 .campos{display:grid;gap:10px}
 .campos label{font-weight:700;font-size:.88rem;display:grid;gap:4px}
 .campos small{font-weight:400;color:var(--tiza)}
@@ -229,7 +271,7 @@ footer .bungee{color:var(--amarillo)}
 @keyframes cae{to{transform:translateY(105vh) rotate(540deg);opacity:.6}}
 
 @media(max-width:980px){
-  .hero .wrap,.ciudad-grid,.duo,.formula-lab{grid-template-columns:1fr}
+  .hero .wrap,.ciudad-grid,.duo,.formula-lab,.conv-grid{grid-template-columns:1fr}
   .duo.rev .duo-art{order:0}
   .misiones-grid{grid-template-columns:1fr}
 }
@@ -244,8 +286,8 @@ footer .bungee{color:var(--amarillo)}
 
 <!-- CINTA DE PAQUETES -->
 <div class="cinta"><div class="cinta-track">
-  <span>▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ DHCP AL RESCATE ▚ 192.168.0.0 ES TERRITORIO PRIVADO ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ </span>
-  <span aria-hidden="true">▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ DHCP AL RESCATE ▚ 192.168.0.0 ES TERRITORIO PRIVADO ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ </span>
+  <span>▚ 128 · 64 · 32 · 16 · 8 · 4 · 2 · 1 ▞ EL BINARIO ES EL IDIOMA DE LA RED ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ EL ISP DA LA IP PÚBLICA · EL ROUTER REPARTE LAS PRIVADAS ▚ </span>
+  <span aria-hidden="true">▚ 128 · 64 · 32 · 16 · 8 · 4 · 2 · 1 ▞ EL BINARIO ES EL IDIOMA DE LA RED ▚ 01101000 ▞ PAQUETE EN VIAJE ▚ MÁSCARA = FRONTERA ▚ HOSTS ÚTILES = 2ⁿ − 2 ▚ EL ISP DA LA IP PÚBLICA · EL ROUTER REPARTE LAS PRIVADAS ▚ </span>
 </div></div>
 
 <!-- TOPBAR CON SELLOS -->
@@ -259,8 +301,9 @@ footer .bungee{color:var(--amarillo)}
   <div class="reveal">
     <span class="modulo-tag">MÓDULO 2 · ORDEN LÓGICO Y GESTIÓN DE RECURSOS</span>
     <h1>La segmentación de la red <span class="resaltado">y la asignación eficiente</span></h1>
-    <p class="bajada">Una red sin segmentar es como una ciudad sin muros ni barrios: el ruido (llamado <b>broadcast</b>) colapsa toda la comunicación. En este taller aprenderás a construir fronteras, repartir direcciones y administrar tus <b>32 bits</b> como todo un ingeniero o ingeniera. 🧱✨</p>
+    <p class="bajada">Una red sin segmentar es como una ciudad sin muros ni barrios: el ruido (llamado <b>broadcast</b>) colapsa toda la comunicación. En este taller cruzarás el puente del binario, construirás fronteras y administrarás tus <b>32 bits</b> como todo un ingeniero o ingeniera. 🌉🧱</p>
     <ul class="logros">
+      <li>🌉 Cruzar el puente: dominar binario y los códigos básicos de la red.</li>
       <li>🧱 Entender la máscara de subred como la frontera de tu barrio digital.</li>
       <li>✨ Dominar la Fórmula de Oro: <code>Hosts útiles = 2ⁿ − 2</code>.</li>
       <li>🏆 Diseñar el Plan Maestro de la red de una escuela rural.</li>
@@ -269,4 +312,998 @@ footer .bungee{color:var(--amarillo)}
   <div class="bitradio reveal">
     <h3>📻 BIT-RADIO: así se ve una IPv4 por dentro</h3>
     <div id="heroBits"></div>
-    
+    <p>Toda dirección IPv4 tiene <b>32 bits</b>: 32 casillas que solo pueden ser <b>0</b> o <b>1</b>. ¡Míralos parpadear!</p>
+  </div>
+</div></header>
+
+<!-- ══════════ ESTACIÓN 1: PUENTE DE COMPRENSIÓN ══════════ -->
+<section id="estacion1"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 1</span>
+    <h2>El Puente de Comprensión 🌉</h2>
+    <p>Los humanos contamos con 10 dedos (sistema <b>decimal</b>: 0 al 9). Las computadoras solo tienen 2 estados: <b>encendido (1)</b> y <b>apagado (0)</b>. Antes de construir barrios digitales necesitamos cruzar este puente: aprender a traducir números y descubrir cómo esos bits se convierten en los códigos de la red… y quién los reparte.</p>
+  </div>
+
+  <!-- A: Balanza binaria -->
+  <div class="sticker sub-bloque reveal">
+    <h3>🧮 A · La balanza binaria: 8 interruptores mágicos</h3>
+    <p>Un <b>octeto</b> son 8 bits. Cada bit es un interruptor, y cada interruptor tiene un <b>peso</b> que vale el doble que el anterior. Haz clic en las pesas para encenderlas y observa cómo se suma el número.</p>
+    <div class="balanza" id="balanza"></div>
+    <div class="puente-lecturas">
+      <div class="lectura"><small>Tu número en binario</small><code id="balBin">00000000</code></div>
+      <div class="lectura"><small>Tu número en decimal</small><code id="balDec">0</code></div>
+      <button class="btn btn-gris" id="balLimpiar">🧹 Apagar todo</button>
+    </div>
+    <div class="retos">
+      <b>🎯 Retos:</b>
+      <button class="reto" data-t="192">Formar 192</button>
+      <button class="reto" data-t="168">Formar 168</button>
+      <button class="reto" data-t="77">Formar 77</button>
+      <span id="retoMsg" style="font-weight:700"></span>
+    </div>
+  </div>
+
+  <!-- B: Conversores -->
+  <div class="conv-grid reveal">
+    <div class="sticker conv-panel" style="background:#eef5fd">
+      <h3>➗ B1 · De DECIMAL a BINARIO (paso a paso)</h3>
+      <p style="font-size:.93rem">El truco: pregúntale a cada peso «¿cabes?» de mayor a menor. Si cabe, escribes <b>1</b> y lo restas; si no, escribes <b>0</b>.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">
+        <input id="d2bIn" type="number" min="0" max="255" value="192" placeholder="0 a 255">
+        <button class="btn btn-azul" id="btnD2B">🔦 Convertir</button>
+      </div>
+      <div id="d2bOut"></div>
+    </div>
+    <div class="sticker conv-panel" style="background:#fffbe9">
+      <h3>✖️ B2 · De BINARIO a DECIMAL (suma de pesos)</h3>
+      <p style="font-size:.93rem">El camino inverso: enciende los pesos que tienen un <b>1</b> debajo y súmalos todos.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">
+        <input id="b2dIn" value="11000000" maxlength="8" placeholder="8 bits: 10101010">
+        <button class="btn btn-amarillo" id="btnB2D">⚖️ Convertir</button>
+      </div>
+      <div id="b2dOut"></div>
+    </div>
+  </div>
+
+  <!-- C: Rayos X de los códigos de red -->
+  <div class="sticker sub-bloque reveal" style="background:#fff">
+    <h3>🩻 C · Rayos X: de bits a los 3 códigos básicos de la red</h3>
+    <p>Todo lo que acabas de aprender se usa igual con 32 bits. Escribe una dirección IP y un prefijo, y mira sus tres códigos hermanos: <b>la IP</b> (tu casa), <b>la máscara</b> (la frontera) y <b>la red</b> (tu barrio).</p>
+    <div class="and-controles" style="margin-top:14px">
+      <input id="xrayIp" value="192.168.1.10" size="16">
+      <label style="font-weight:700">Prefijo /<input id="xrayPref" type="number" min="8" max="30" value="24" style="width:70px"></label>
+      <button class="btn btn-rojo" id="btnXray">🩻 ¡Radiografiar!</button>
+    </div>
+    <div id="xrayOut" style="overflow-x:auto"></div>
+  </div>
+
+  <!-- D: El viaje de la dirección: ISP → dispositivos -->
+  <div class="sticker sub-bloque reveal" style="background:#eef5fd">
+    <h3>🚚 D · ¿Quién te da tu dirección? El viaje del ISP a tu tablet</h3>
+    <p style="margin-bottom:6px">En Internet solo viajan direcciones <b>PÚBLICAS</b> (únicas en el mundo). Tu proveedor (<b>ISP</b>: Claro, Movistar, Tigo…) le presta <b>una sola IP pública</b> a tu router. Y adentro, el router reparte direcciones <b>PRIVADAS</b> a cada dispositivo. Pulsa «Siguiente» para seguir el viaje paso a paso:</p>
+    <svg id="viajeSvg" viewBox="0 0 780 350" style="width:100%;margin-top:8px" role="img" aria-label="Viaje de la dirección IP desde el ISP hasta los dispositivos">
+      <!-- Internet -->
+      <g class="etg" id="grpInternet">
+        <path d="M60 118 q-14 -34 22 -40 q6 -26 40 -22 q30 -18 48 8 q30 2 24 34 q14 26 -18 32 l-100 0 q-20 -2 -16 -12z" fill="#cfe9ff" stroke="#122a44" stroke-width="3"/>
+        <text x="112" y="112" text-anchor="middle" font-family="Bungee" font-size="14" fill="#122a44">INTERNET</text>
+        <text x="112" y="132" text-anchor="middle" font-size="11" fill="#1d3d63" font-weight="700">solo IPs PÚBLICAS 🌍</text>
+      </g>
+      <!-- Enlace nube-ISP -->
+      <g class="etg" id="grpLink1">
+        <line x1="176" y1="118" x2="258" y2="146" stroke="#122a44" stroke-width="4"/>
+        <circle r="5" fill="#ffc93c" stroke="#122a44" stroke-width="2"><animateMotion dur="2.2s" repeatCount="indefinite" path="M176,118 L258,146"/></circle>
+      </g>
+      <!-- Torre ISP -->
+      <g class="etg" id="grpIsp">
+        <path d="M270 250 L292 110 L314 250" fill="none" stroke="#122a44" stroke-width="4"/>
+        <line x1="276" y1="212" x2="308" y2="212" stroke="#122a44" stroke-width="3"/>
+        <line x1="281" y1="180" x2="303" y2="180" stroke="#122a44" stroke-width="3"/>
+        <circle cx="292" cy="106" r="7" fill="#e4572e" stroke="#122a44" stroke-width="2.5"/>
+        <path d="M272 88 q20 -18 40 0" fill="none" stroke="#2478d0" stroke-width="3"/>
+        <path d="M264 76 q28 -26 56 0" fill="none" stroke="#2478d0" stroke-width="3"/>
+        <text x="292" y="272" text-anchor="middle" font-family="Bungee" font-size="13" fill="#122a44">ISP</text>
+        <text x="292" y="288" text-anchor="middle" font-size="11" fill="#1d3d63" font-weight="700">tu proveedor de Internet</text>
+      </g>
+      <!-- Enlace ISP-router -->
+      <g class="etg" id="grpLink2">
+        <line x1="316" y1="178" x2="438" y2="178" stroke="#122a44" stroke-width="4"/>
+        <circle r="5" fill="#ffc93c" stroke="#122a44" stroke-width="2"><animateMotion dur="2s" repeatCount="indefinite" path="M316,178 L438,178"/></circle>
+      </g>
+      <!-- Router -->
+      <g class="etg" id="grpRouter">
+        <rect x="438" y="152" width="132" height="54" rx="12" fill="#122a44" stroke="#122a44" stroke-width="3"/>
+        <line x1="462" y1="152" x2="454" y2="124" stroke="#122a44" stroke-width="4"/><circle cx="454" cy="120" r="5" fill="#e4572e"/>
+        <line x1="546" y1="152" x2="554" y2="124" stroke="#122a44" stroke-width="4"/><circle cx="554" cy="120" r="5" fill="#2fbf71"><animate attributeName="opacity" values="1;.2;1" dur="1.4s" repeatCount="indefinite"/></circle>
+        <text x="504" y="180" text-anchor="middle" font-family="Bungee" font-size="14" fill="#ffc93c">ROUTER</text>
+        <text x="504" y="196" text-anchor="middle" font-size="10" fill="#cfe3ff">alcalde de tu barrio 🏘️</text>
+      </g>
+      <!-- IP pública -->
+      <g class="etg" id="grpBadgePub">
+        <rect x="408" y="52" width="192" height="40" rx="10" fill="#ffc93c" stroke="#122a44" stroke-width="3"/>
+        <text x="504" y="70" text-anchor="middle" font-size="11" font-weight="700">🌍 IP PÚBLICA (única en el mundo)</text>
+        <text x="504" y="86" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="13">190.85.20.41</text>
+        <line x1="504" y1="92" x2="504" y2="150" stroke="#122a44" stroke-width="2.5" stroke-dasharray="6 5"/>
+      </g>
+      <!-- Dispositivos -->
+      <g class="etg" id="grpDevs">
+        <g stroke="#122a44" stroke-width="3">
+          <line x1="570" y1="170" x2="640" y2="86"/>
+          <line x1="570" y1="176" x2="640" y2="156"/>
+          <line x1="570" y1="184" x2="640" y2="226"/>
+          <line x1="570" y1="190" x2="640" y2="296"/>
+        </g>
+        <circle r="4" fill="#2fbf71" stroke="#122a44" stroke-width="2"><animateMotion dur="1.8s" repeatCount="indefinite" path="M570,176 L640,156"/></circle>
+        <g>
+          <rect x="640" y="56" width="128" height="52" rx="10" fill="#fff" stroke-width="3"/>
+          <text x="656" y="90" font-size="22">📱</text><text x="688" y="78" font-size="10" font-weight="700">Celular</text>
+          <text x="688" y="96" font-family="Space Mono" font-size="10" font-weight="700" fill="#1e9e5a">🔒 192.168.1.2</text>
+          <rect x="640" y="126" width="128" height="52" rx="10" fill="#fff" stroke-width="3"/>
+          <text x="656" y="160" font-size="22">💻</text><text x="688" y="148" font-size="10" font-weight="700">Portátil</text>
+          <text x="688" y="166" font-family="Space Mono" font-size="10" font-weight="700" fill="#1e9e5a">🔒 192.168.1.3</text>
+          <rect x="640" y="196" width="128" height="52" rx="10" fill="#fff" stroke-width="3"/>
+          <text x="656" y="230" font-size="22">📟</text><text x="688" y="218" font-size="10" font-weight="700">Tablet</text>
+          <text x="688" y="236" font-family="Space Mono" font-size="10" font-weight="700" fill="#1e9e5a">🔒 192.168.1.4</text>
+          <rect x="640" y="266" width="128" height="52" rx="10" fill="#fff" stroke-width="3"/>
+          <text x="656" y="300" font-size="22">🖨️</text><text x="688" y="288" font-size="10" font-weight="700">Impresora</text>
+          <text x="688" y="306" font-family="Space Mono" font-size="10" font-weight="700" fill="#1e9e5a">📌 192.168.1.10</text>
+        </g>
+        <text x="704" y="340" text-anchor="middle" font-size="11" font-weight="700" fill="#1d3d63">IPs PRIVADAS: solo existen adentro 🏠</text>
+      </g>
+      <!-- NAT -->
+      <g class="etg" id="grpNat">
+        <circle cx="438" cy="120" r="20" fill="#ff7a3d" stroke="#122a44" stroke-width="3"/>
+        <text x="438" y="126" text-anchor="middle" font-family="Bungee" font-size="11" fill="#fff">NAT</text>
+        <rect x="350" y="60" width="26" height="18" rx="3" fill="#fff" stroke="#122a44" stroke-width="2.5">
+          <animateMotion dur="3.4s" repeatCount="indefinite" path="M0,0 C-60,-40 -160,-40 -238,42"/></rect>
+        <text x="330" y="40" font-size="10" font-weight="700" fill="#1d3d63">«salgo con el sello público y regreso a mi casa privada» ✉️</text>
+      </g>
+    </svg>
+    <div class="etapas-nav">
+      <button class="btn btn-gris" id="etapaPrev">◀ Anterior</button>
+      <span id="etapaNum" style="font-weight:700">Introducción</span>
+      <button class="btn btn-azul" id="etapaNext">Siguiente ▶</button>
+    </div>
+    <div class="etapa-caja" id="etapaTexto">Observa el mapa completo: la nube de Internet, el proveedor (ISP), tu router y tus dispositivos. Pulsa «Siguiente» para descubrir cómo viaja cada dirección.</div>
+
+    <h3 style="margin-top:26px">🕵️ Mini-desafío: ¿pública o privada?</h3>
+    <p style="font-size:.93rem;margin-bottom:12px">Clasifica cada dirección. Pista: las privadas viven en los bloques <span class="chip">10.0.0.0/8</span> <span class="chip">172.16.0.0/12</span> <span class="chip">192.168.0.0/16</span>.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px" id="ppQuiz"></div>
+    <p id="ppScore" style="font-weight:700;margin-top:12px"></p>
+  </div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 2: LA CIUDAD ══════════ -->
+<section id="estacion2"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 2</span>
+    <h2>La ciudad sin muros 🏚️➡️🏘️</h2>
+    <p>Imagina que la red es la ciudad de <b>Redville</b>. Sin barrios ni puertas, cada grito (broadcast) lo escuchan TODOS los vecinos… y nadie se entiende. Pulsa el botón y observa qué pasa cuando construimos muros.</p>
+  </div>
+  <div class="ciudad-grid">
+    <div class="sticker ciudad-marco reveal">
+      <svg id="ciudadSvg" class="ciudad caos" viewBox="0 0 720 440" role="img" aria-label="Ciudad de Redville con y sin muros">
+        <defs>
+          <g id="casa">
+            <rect x="3" y="17" width="40" height="25" rx="3" fill="#fff" stroke="#122a44" stroke-width="2.5"/>
+            <path d="M0 19 L23 2 L46 19 Z" fill="currentColor" stroke="#122a44" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="18" y="27" width="10" height="15" fill="#122a44"/>
+            <rect x="8" y="23" width="8" height="8" fill="#cfe9ff" stroke="#122a44" stroke-width="1.5"/>
+          </g>
+          <g id="arbol"><rect x="9" y="20" width="6" height="14" fill="#7a4b22"/><circle cx="12" cy="13" r="11" fill="#2fbf71" stroke="#122a44" stroke-width="2"/></g>
+        </defs>
+        <circle cx="650" cy="52" r="26" fill="#ffc93c" stroke="#122a44" stroke-width="3"/>
+        <path d="M60 34 q14 -18 34 0 q18 -12 28 4" fill="none" stroke="#9db9d6" stroke-width="6" stroke-linecap="round"/>
+        <rect y="396" width="720" height="44" fill="#d5e8c4"/>
+        <g class="zonas">
+          <g style="color:#2478d0"><rect x="30" y="62" width="300" height="148" rx="14" fill="#dcecfd" stroke="#2478d0" stroke-width="4" stroke-dasharray="14 8"/><text x="46" y="88" class="zt">BARRIO A</text></g>
+          <g style="color:#ff7a3d"><rect x="390" y="62" width="300" height="148" rx="14" fill="#fff3e6" stroke="#ff7a3d" stroke-width="4" stroke-dasharray="14 8"/><text x="406" y="88" class="zt">BARRIO B</text></g>
+          <g style="color:#1e9e5a"><rect x="30" y="238" width="300" height="148" rx="14" fill="#e2f6e9" stroke="#1e9e5a" stroke-width="4" stroke-dasharray="14 8"/><text x="46" y="264" class="zt">BARRIO C</text></g>
+          <g style="color:#e4572e"><rect x="390" y="238" width="300" height="148" rx="14" fill="#ffe7de" stroke="#e4572e" stroke-width="4" stroke-dasharray="14 8"/><text x="406" y="264" class="zt">BARRIO D</text></g>
+        </g>
+        <g style="color:#2478d0"><use href="#casa" x="60" y="120"/><use href="#casa" x="190" y="120"/><use href="#arbol" x="275" y="140"/></g>
+        <g style="color:#ff7a3d"><use href="#casa" x="420" y="120"/><use href="#casa" x="550" y="120"/><use href="#arbol" x="635" y="140"/></g>
+        <g style="color:#1e9e5a"><use href="#casa" x="60" y="300"/><use href="#casa" x="190" y="300"/><use href="#arbol" x="275" y="320"/></g>
+        <g style="color:#e4572e"><use href="#casa" x="420" y="300"/><use href="#casa" x="550" y="300"/><use href="#arbol" x="635" y="320"/></g>
+        <g class="caos-layer">
+          <g transform="translate(338,200)"><path d="M0 10 L30 0 L30 36 L0 26 Z" fill="#ff7a3d" stroke="#122a44" stroke-width="2.5"/><rect x="30" y="12" width="12" height="12" fill="#122a44"/></g>
+          <path class="ruido" d="M360 210 L95 135"/><path class="ruido" d="M360 210 L225 135"/>
+          <path class="ruido" d="M360 210 L455 135"/><path class="ruido" d="M360 210 L585 135"/>
+          <path class="ruido" d="M360 210 L95 315"/><path class="ruido" d="M360 210 L225 315"/>
+          <path class="ruido" d="M360 210 L455 315"/><path class="ruido" d="M360 210 L585 315"/>
+          <g font-family="Bungee" font-size="16" fill="#e4572e"><circle cx="180" cy="200" r="14" fill="#fff" stroke="#e4572e" stroke-width="3"/><text x="176" y="206">!</text>
+          <circle cx="540" cy="210" r="14" fill="#fff" stroke="#e4572e" stroke-width="3"/><text x="536" y="216">!</text>
+          <circle cx="360" cy="120" r="14" fill="#fff" stroke="#e4572e" stroke-width="3"/><text x="356" y="126">!</text></g>
+        </g>
+        <g class="orden-layer">
+          <g stroke="#122a44" stroke-width="3">
+            <rect x="160" y="200" width="40" height="14" rx="4" fill="#ffc93c"/><rect x="176" y="182" width="8" height="20" fill="#122a44"/>
+            <rect x="520" y="200" width="40" height="14" rx="4" fill="#ffc93c"/><rect x="536" y="182" width="8" height="20" fill="#122a44"/>
+          </g>
+          <rect x="150" y="244" width="18" height="13" rx="2" fill="#2fbf71" stroke="#122a44" stroke-width="2">
+            <animateMotion path="M0 0 h120" dur="2.5s" repeatCount="indefinite"/></rect>
+          <rect x="510" y="244" width="18" height="13" rx="2" fill="#2fbf71" stroke="#122a44" stroke-width="2">
+            <animateMotion path="M0 0 h120" dur="2.5s" repeatCount="indefinite"/></rect>
+          <text x="360" y="30" text-anchor="middle" font-family="Bungee" font-size="18" fill="#1e9e5a">✔ MENSAJES SOLO DENTRO DE CADA BARRIO</text>
+        </g>
+      </svg>
+    </div>
+    <div class="sticker panel-ciudad reveal">
+      <h3 id="ciudadTitulo">😱 ¡Caos! Ciudad SIN segmentar</h3>
+      <ul id="ciudadLista">
+        <li>El mensaje de UN equipo lo reciben TODOS (broadcast sin control).</li>
+        <li>El tráfico y el ruido colapsan la comunicación.</li>
+        <li>Nadie sabe quién pertenece a qué zona.</li>
+      </ul>
+      <button class="btn btn-rojo" id="btnMuros">🧱 ¡Construir los muros!</button>
+      <p style="font-size:.9rem;color:var(--tiza)">Cada barrio = una <b>subred</b>. La puerta del muro = el <b>router</b>. 🚪</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 3: LA CALLE DE 32 BITS ══════════ -->
+<section id="estacion3"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 3</span>
+    <h2>La Calle de los 32 Bits 🛣️</h2>
+    <p>El docente dibujó en la pizarra una barra de <b>32 casillas</b>. Con una línea vertical decide dónde termina la <b>RED</b> (el barrio) y dónde empiezan los <b>HOST</b> (las casas). ¡Ahora esa línea la mueves TÚ! Desliza y mira cómo cambia la máscara.</p>
+  </div>
+  <div class="sticker calle-panel reveal">
+    <div class="calle-scroll"><div class="calle-inner">
+      <div class="calle" id="calle"></div>
+      <div class="divisor" id="divisor"><div class="banderin" id="banderin">/24</div></div>
+    </div>
+    <div class="calle-leyenda"><span style="color:var(--azul)">◀ Porción RED (el barrio)</span><span style="color:#b8860b">Porción HOST (las casas) ▶</span></div>
+    </div>
+    <label for="pref" style="font-weight:700;display:block;margin-top:16px">🎚️ Desliza la frontera (prefijo entre /8 y /30):</label>
+    <input type="range" id="pref" min="8" max="30" value="24">
+    <div class="lecturas">
+      <div class="lectura"><small>Máscara (la frontera)</small><code id="rdMask">255.255.255.0</code></div>
+      <div class="lectura"><small>Prefijo</small><code id="rdPref">/24</code></div>
+      <div class="lectura"><small>Bits de red</small><code id="rdRed">24</code></div>
+      <div class="lectura"><small>Bits de host (n)</small><code id="rdHost">8</code></div>
+      <div class="lectura"><small>Hosts útiles (2ⁿ−2)</small><code id="rdUtil">254</code></div>
+      <div class="lectura"><small>Ej: si vivo en 192.168.7.77…</small><code id="rdEj">mi barrio es 192.168.7.0 📣 grito en .255</code></div>
+    </div>
+  </div>
+
+  <!-- Laboratorio AND -->
+  <div class="sticker and-panel reveal">
+    <h3>🛂 La Compuerta del Guardia: la operación AND en vivo</h3>
+    <p>El guardia del muro compara la <b>IP</b> con la <b>máscara</b> bit a bit: solo si AMBOS bits son 1, queda 1. El resultado revela <b>tu barrio</b> (la dirección de red).</p>
+    <div class="and-controles">
+      <select id="ipSel">
+        <option value="192.168.20.35">192.168.20.35</option>
+        <option value="10.10.0.77">10.10.0.77</option>
+        <option value="172.16.88.130">172.16.88.130</option>
+        <option value="192.168.60.2">192.168.60.2</option>
+        <option value="custom">✏️ Escribir la mía…</option>
+      </select>
+      <input id="ipCustom" class="oculto" placeholder="Ej: 192.168.1.45" size="16">
+      <label style="font-weight:700">Prefijo /<input id="prefCustom" type="number" min="8" max="30" value="26" style="width:70px"></label>
+      <button class="btn btn-rojo" id="btnAnd">⚡ ¡Aplicar AND!</button>
+    </div>
+    <div id="andBits" style="overflow-x:auto;min-width:0"></div>
+    <div id="andResult" class="oculto"></div>
+  </div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 4: LAS 4 IDEAS ══════════ -->
+<section id="estacion4"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 4</span>
+    <h2>Las 4 grandes ideas del ingeniero de redes 🧠</h2>
+  </div>
+
+  <div class="duo reveal">
+    <div class="duo-txt">
+      <span class="kicker" style="background:#dcecfd">IDEA 1 · LA FRONTERA LÓGICA</span>
+      <h3>La Máscara de Subred: el muro con puerta 🧱</h3>
+      <p>Es un patrón de <b>32 bits</b> (¡otras 32 casillas!) lleno de <b>1</b> en la parte de red y de <b>0</b> en la parte de host. Al aplicarlo sobre una IP con la operación <b>AND</b>, separa matemáticamente <b>el barrio</b> (red) de <b>la casa</b> (host).</p>
+      <p><span class="chip">Máscara /24 = 255.255.255.0</span> <span class="chip">11111111.11111111.11111111.00000000</span></p>
+      <div class="nota-caja">🗣️ <b>Dato curioso:</b> 255.255.255.0 en binario son ¡24 unos seguidos! Por eso decimos «barra veinticuatro».</div>
+    </div>
+    <div class="duo-art sticker" style="background:#dcecfd">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Garita de control AND">
+        <rect x="0" y="120" width="130" height="70" fill="#b9d4ee" stroke="#122a44" stroke-width="3"/>
+        <rect x="210" y="120" width="130" height="70" fill="#b9d4ee" stroke="#122a44" stroke-width="3"/>
+        <g stroke="#8fb3d8" stroke-width="2"><line x1="0" y1="143" x2="130" y2="143"/><line x1="0" y1="166" x2="130" y2="166"/><line x1="210" y1="143" x2="340" y2="143"/><line x1="210" y1="166" x2="340" y2="166"/></g>
+        <rect x="196" y="70" width="10" height="120" fill="#7a4b22" stroke="#122a44" stroke-width="2"/>
+        <rect x="130" y="78" width="120" height="14" rx="6" fill="#e4572e" stroke="#122a44" stroke-width="2.5" transform="rotate(-18 130 85)"/>
+        <rect x="120" y="14" width="110" height="34" rx="8" fill="#ffc93c" stroke="#122a44" stroke-width="3"/>
+        <text x="175" y="37" text-anchor="middle" font-family="Bungee" font-size="15" fill="#122a44">CONTROL AND</text>
+        <g transform="translate(250,60)"><circle cx="20" cy="16" r="14" fill="#cfe3ff" stroke="#122a44" stroke-width="3"/><circle cx="14" cy="14" r="3" fill="#122a44"/><circle cx="26" cy="14" r="3" fill="#122a44"/><line x1="20" y1="2" x2="20" y2="-8" stroke="#122a44" stroke-width="3"/><circle cx="20" cy="-10" r="4" fill="#e4572e"/><rect x="6" y="30" width="28" height="34" rx="6" fill="#2478d0" stroke="#122a44" stroke-width="3"/></g>
+        <g font-family="Space Mono" font-size="12" font-weight="700">
+          <rect x="16" y="40" width="52" height="24" rx="6" fill="#fff" stroke="#122a44" stroke-width="2.5"/><text x="26" y="57">IP</text>
+          <rect x="16" y="72" width="82" height="24" rx="6" fill="#fff" stroke="#122a44" stroke-width="2.5"/><text x="24" y="89">MÁSCARA</text>
+          <path d="M100 52 q40 8 44 44" fill="none" stroke="#122a44" stroke-width="3"/>
+          <rect x="236" y="150" width="86" height="26" rx="6" fill="#e2f6e9" stroke="#1e9e5a" stroke-width="3"/><text x="246" y="168" fill="#1e9e5a">RED ✓</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="duo rev">
+    <div class="duo-txt">
+      <span class="kicker" style="background:#fff3e6">IDEA 2 · LA BUROCRACIA CONTROLADA</span>
+      <h3>IP Estática: la silla con nombre grabado 🪑</h3>
+      <p>Un humano configura la dirección <b>a mano</b> y queda <b>para siempre</b>. Es lenta y costosa en tiempo, pero garantiza <b>trazabilidad absoluta</b>: siempre sabes quién es quién.</p>
+      <p>Se usa en dispositivos <b>críticos</b>: <span class="chip">🖥️ servidores</span> <span class="chip">📡 routers</span> <span class="chip">🖨️ impresoras de red</span></p>
+    </div>
+    <div class="duo-art sticker" style="background:#fff3e6">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Servidor con placa fija">
+        <rect x="90" y="18" width="130" height="130" rx="10" fill="#1d3d63" stroke="#122a44" stroke-width="3"/>
+        <g fill="#0e2a47" stroke="#122a44" stroke-width="2"><rect x="102" y="32" width="106" height="26" rx="4"/><rect x="102" y="66" width="106" height="26" rx="4"/><rect x="102" y="100" width="106" height="26" rx="4"/></g>
+        <circle cx="196" cy="45" r="5" fill="#2fbf71"><animate attributeName="opacity" values="1;.2;1" dur="1.2s" repeatCount="indefinite"/></circle>
+        <circle cx="196" cy="79" r="5" fill="#ffc93c"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/></circle>
+        <circle cx="196" cy="113" r="5" fill="#2fbf71"><animate attributeName="opacity" values="1;.2;1" dur="2s" repeatCount="indefinite"/></circle>
+        <rect x="95" y="162" width="150" height="34" rx="8" fill="#ffc93c" stroke="#122a44" stroke-width="3"/>
+        <text x="170" y="184" text-anchor="middle" font-family="Space Mono" font-weight="700" font-size="13">192.168.1.10</text>
+        <g transform="translate(252,120) rotate(14)"><circle cx="26" cy="26" r="25" fill="none" stroke="#e4572e" stroke-width="4"/><text x="26" y="32" text-anchor="middle" font-family="Bungee" font-size="14" fill="#e4572e">FIJA</text></g>
+        <text x="60" y="216" font-size="12" font-family="Atkinson Hyperlegible" font-weight="700" fill="#122a44">📌 Grabada en piedra… digo, en configuración.</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="duo-txt">
+      <span class="kicker" style="background:#e2f6e9">IDEA 3 · LA LOGÍSTICA AUTOMATIZADA</span>
+      <h3>DHCP: el robot repartidor de IPs 🤖</h3>
+      <p>Es un protocolo que asigna direcciones <b>de forma temporal y automática</b>. Cuando te desconectas, tu IP vuelve a la caja del robot para otro invitado. Es la forma <b>ética y eficiente</b> de gestionar recursos escasos en redes de <b>más de 20 nodos</b>.</p>
+      <p>Ideal para dispositivos <b>transitorios</b>: <span class="chip">📱 celulares</span> <span class="chip">💻 laptops de visitantes</span> <span class="chip">⏱️ tablets prestadas</span></p>
+      <table class="vs-tabla">
+        <tr><th>🥊</th><th>IP ESTÁTICA</th><th>DHCP</th></tr>
+        <tr><td><b>¿Quién asigna?</b></td><td>Una persona 🔧</td><td>El servidor robot 🤖</td></tr>
+        <tr><td><b>Duración</b></td><td>Permanente</td><td>Alquiler temporal</td></tr>
+        <tr><td><b>¿Para quién?</b></td><td>Servidores, routers</td><td>Invitados y móviles</td></tr>
+      </table>
+    </div>
+    <div class="duo-art sticker" style="background:#e2f6e9">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Máquina DHCP repartiendo IPs">
+        <rect x="70" y="20" width="150" height="190" rx="14" fill="#2fbf71" stroke="#122a44" stroke-width="3.5"/>
+        <rect x="86" y="36" width="118" height="40" rx="6" fill="#0e2a47"/>
+        <text x="145" y="62" text-anchor="middle" font-family="Bungee" font-size="15" fill="#ffc93c">DHCP</text>
+        <g stroke="#122a44" stroke-width="2.5" fill="#fff">
+          <rect x="88" y="90" width="46" height="24" rx="5"/><rect x="144" y="90" width="46" height="24" rx="5"/>
+          <rect x="88" y="122" width="46" height="24" rx="5"/><rect x="144" y="122" width="46" height="24" rx="5"/>
+        </g>
+        <g font-family="Space Mono" font-size="9" fill="#122a44" font-weight="700">
+          <text x="94" y="106">.101</text><text x="150" y="106">.102</text><text x="94" y="138">.103</text><text x="150" y="138">.104</text>
+        </g>
+        <rect x="86" y="160" width="118" height="16" rx="8" fill="#0e2a47"/>
+        <rect x="228" y="150" width="84" height="52" rx="8" fill="#fff" stroke="#122a44" stroke-width="3">
+          <animate attributeName="y" values="150;158;150" dur="2.4s" repeatCount="indefinite"/></rect>
+        <text x="270" y="172" text-anchor="middle" font-family="Space Mono" font-size="11" font-weight="700">IP .105</text>
+        <text x="270" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="#e4572e">vence en 24 h ⏳</text>
+        <text x="145" y="226" text-anchor="middle" font-size="12" font-weight="700" fill="#122a44">«¡Siguiente invitado, su IP por un día!»</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="duo rev">
+    <div class="duo-txt">
+      <span class="kicker" style="background:#ffe7de">IDEA 4 · LA SOBERANÍA LOCAL</span>
+      <h3>Rangos Privados (RFC 1918): cortinas adentro 🕶️</h3>
+      <p>Son bloques de IPs <b>reservados solo para redes locales (LAN)</b>. ¡No pueden viajar por Internet! Usarlos es un <b>deber de seguridad</b>: desde afuera nadie puede ver la topología interna de tu red.</p>
+      <p><span class="chip">🏔️ 10.0.0.0/8 · 16.777.214 casas</span> <span class="chip">🏢 172.16.0.0/12 · 1.048.574 casas</span> <span class="chip">🏡 192.168.0.0/16 · 65.534 casas</span></p>
+      <div class="nota-caja">🕵️ Si un espía mira desde Internet, solo ve la puerta de entrada (el router y su IP pública). Las cortinas privadas protegen tu mundo interior.</div>
+    </div>
+    <div class="duo-art sticker" style="background:#ffe7de">
+      <svg viewBox="0 0 340 230" role="img" aria-label="Casa con cortinas y espía afuera">
+        <path d="M60 120 L130 60 L200 120 Z" fill="#e4572e" stroke="#122a44" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="72" y="120" width="116" height="80" fill="#fff" stroke="#122a44" stroke-width="3"/>
+        <rect x="86" y="134" width="34" height="30" fill="#cfe9ff" stroke="#122a44" stroke-width="2.5"/>
+        <path d="M86 134 q8 16 0 30 M103 134 q-8 16 0 30" stroke="#ffc93c" stroke-width="6" fill="none"/>
+        <rect x="140" y="134" width="34" height="30" fill="#cfe9ff" stroke="#122a44" stroke-width="2.5"/>
+        <path d="M140 134 q8 16 0 30 M157 134 q-8 16 0 30" stroke="#ffc93c" stroke-width="6" fill="none"/>
+        <rect x="112" y="168" width="24" height="32" fill="#122a44"/>
+        <g stroke="#122a44" stroke-width="2.5" stroke-dasharray="8 6"><line x1="20" y1="210" x2="320" y2="210"/></g>
+        <g transform="translate(240,140)"><circle cx="30" cy="26" r="20" fill="#ffd9b3" stroke="#122a44" stroke-width="3"/><circle cx="20" cy="24" r="9" fill="#0e2a47" stroke="#122a44" stroke-width="2"/><circle cx="42" cy="24" r="9" fill="#0e2a47" stroke="#122a44" stroke-width="2"/><line x1="29" y1="24" x2="33" y2="24" stroke="#122a44" stroke-width="3"/><text x="58" y="10" font-family="Bungee" font-size="14" fill="#e4572e">¿?</text></g>
+        <ellipse cx="268" cy="200" rx="40" ry="14" fill="#2fbf71" stroke="#122a44" stroke-width="2.5"/>
+        <g transform="translate(28,168)"><rect width="26" height="30" rx="5" fill="#ffc93c" stroke="#122a44" stroke-width="3"/><path d="M5 0 v-8 a8 8 0 0 1 16 0 v8" fill="none" stroke="#122a44" stroke-width="4"/></g>
+        <text x="30" y="226" font-size="12" font-weight="700" fill="#122a44">Zona privada: solo vecinos autorizados 🔒</text>
+      </svg>
+    </div>
+  </div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 5: FÓRMULA DE ORO ══════════ -->
+<section id="estacion5"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 5</span>
+    <h2>La Fórmula de Oro ✨</h2>
+    <p>Cópiala textual en tu cuaderno y pruébala aquí mismo:</p>
+  </div>
+  <div class="formula-banda reveal">
+    <div class="formula-gigante">HOSTS ÚTILES = 2<sup>n</sup> − 2
+      <small>Donde <b>n</b> es el número de bits de la porción de HOST. Se restan 2 porque la dirección de RED y la de BROADCAST no pueden asignarse a dispositivos.</small>
+    </div>
+    <div class="formula-lab">
+      <div>
+        <label style="font-weight:700;color:var(--amarillo)">🎚️ Bits de host (n): <span id="nVal" class="mono">8</span></label>
+        <input type="range" id="nRange" min="2" max="10" value="8">
+        <p style="margin:8px 0">Combinaciones: <code id="powVal" style="color:#fff">2⁸ = 256</code> · Útiles: <code id="utilVal" style="color:var(--amarillo);font-size:1.2rem">254</code></p>
+        <div class="asientos" id="sillas" title="Cada cuadrito es una posible dirección"></div>
+        <p style="font-size:.85rem;color:#cfe3ff;margin-top:8px">Si n es grande mostramos solo un resumen: ¡pueden ser miles de sillas!</p>
+      </div>
+      <div class="reservadas">
+        <div class="reservada">📛 <b>Asiento 0 → Dirección de RED.</b> Es el nombre de la calle: nadie puede «vivir» en el cartel.</div>
+        <div class="reservada">📣 <b>Último asiento → BROADCAST.</b> Es el megáfono del barrio para gritar a todos. Tampoco es una casa.</div>
+        <div class="reservada" style="border-color:var(--rojo)">⚠️ <b>Regla del taller:</b> un error en los hosts útiles anula tu Plan Maestro. ¡Verifica dos veces, como los pilotos! ✈️</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 6: LAS 10 MISIONES ══════════ -->
+<section id="estacion6"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 6</span>
+    <h2>Entrenamiento: 10 misiones latinoamericanas 🗺️</h2>
+    <p>El docente «dicta» cada escenario. Tú calculas en tu cuaderno con potencias de 2 y operaciones binarias… y luego verificas aquí. Cada misión pide: <b>máscara, red, broadcast y rango útil</b>.</p>
+  </div>
+  <div class="caja-herr reveal">
+    <h3>🧰 Caja de herramientas: potencias de 2 (¡memorízalas!) y el peso de cada bit (ya lo cruzaste en el Puente 🌉)</h3>
+    <div class="potencias" id="potencias"></div>
+    <p style="margin-top:10px;font-size:.9rem">Cada casilla de un octeto vale: <span class="chip">128</span><span class="chip">64</span><span class="chip">32</span><span class="chip">16</span><span class="chip">8</span><span class="chip">4</span><span class="chip">2</span><span class="chip">1</span></p>
+  </div>
+  <div style="margin-bottom:18px" class="reveal"><span class="contador" id="contadorMisiones">Misiones logradas: 0 / 10</span></div>
+  <div class="misiones-grid" id="listaMisiones"></div>
+</div></section>
+
+<!-- ══════════ ESTACIÓN 7: PLAN MAESTRO ══════════ -->
+<section id="estacion7"><div class="wrap">
+  <div class="senal reveal">
+    <span class="senal-num">ESTACIÓN 7 · PRODUCTO 2</span>
+    <h2>El Plan Maestro: Escuela Rural «Nueva Esperanza» 🏫</h2>
+    <p>Diseña la red de una institución educativa rural latinoamericana. Completa los 4 pasos y emite tu certificado. (En clase, este plan se entrega <b>a mano en papel milimetrado y con regla</b> 📏).</p>
+  </div>
+
+  <div class="termometro reveal">
+    <span class="termo-chip" id="t1">1️⃣ Topología explorada</span>
+    <span class="termo-chip" id="t2">2️⃣ Subredes calculadas</span>
+    <span class="termo-chip" id="t3">3️⃣ Estática vs DHCP dominado</span>
+  </div>
+
+  <div class="paso-tabs reveal">
+    <button class="paso-tab activa" data-paso="1">PASO 1 · TOPOLOGÍA</button>
+    <button class="paso-tab" data-paso="2">PASO 2 · CÁLCULO</button>
+    <button class="paso-tab" data-paso="3">PASO 3 · ASIGNACIÓN</button>
+    <button class="paso-tab" data-paso="4">PASO 4 · CERTIFICADO</button>
+  </div>
+
+  <div class="paso-panel reveal" id="panel1">
+    <p>📏 <b>Topología lógica dibujada a regla.</b> Haz clic en cada pabellón para conocer su misión. Explora los 4 para avanzar.</p>
+    <svg viewBox="0 0 760 430" style="width:100%;margin-top:14px" role="img" aria-label="Topología de la escuela">
+      <g stroke="#122a44" stroke-width="4">
+        <line x1="300" y1="180" x2="240" y2="130"/><line x1="460" y1="180" x2="520" y2="130"/>
+        <line x1="300" y1="250" x2="240" y2="300"/><line x1="460" y1="250" x2="520" y2="300"/>
+      </g>
+      <g fill="#ffc93c" stroke="#122a44" stroke-width="2">
+        <circle r="5"><animateMotion dur="2.4s" repeatCount="indefinite" path="M300,180 L240,130"/></circle>
+        <circle r="5"><animateMotion dur="2.8s" repeatCount="indefinite" path="M520,130 L460,180"/></circle>
+        <circle r="5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M300,250 L240,300"/></circle>
+        <circle r="5"><animateMotion dur="3s" repeatCount="indefinite" path="M520,300 L460,250"/></circle>
+      </g>
+      <g><rect x="300" y="180" width="160" height="70" rx="12" fill="#122a44" stroke="#122a44" stroke-width="3"/>
+        <line x1="330" y1="180" x2="322" y2="152" stroke="#122a44" stroke-width="4"/><circle cx="322" cy="148" r="5" fill="#e4572e"/>
+        <line x1="430" y1="180" x2="438" y2="152" stroke="#122a44" stroke-width="4"/><circle cx="438" cy="148" r="5" fill="#2fbf71"/>
+        <text x="380" y="212" text-anchor="middle" font-family="Bungee" font-size="14" fill="#ffc93c">ROUTER</text>
+        <text x="380" y="232" text-anchor="middle" font-size="11" fill="#cfe3ff" font-family="Space Mono">192.168.1.0/24</text>
+      </g>
+      <g class="pav" data-p="0" transform="translate(60,50)"><rect width="180" height="112" rx="10" fill="#dcecfd" stroke="#122a44" stroke-width="3"/>
+        <rect x="12" y="12" width="156" height="28" rx="6" fill="#2478d0"/><text x="90" y="32" text-anchor="middle" class="pav-t">PABELLÓN A</text>
+        <text x="90" y="62" text-anchor="middle" class="pav-s">Administración y Biblioteca</text><text x="90" y="84" text-anchor="middle" class="pav-ip">🖥️ Servidor biblioteca: IP FIJA</text></g>
+      <g class="pav" data-p="1" transform="translate(520,50)"><rect width="180" height="112" rx="10" fill="#fff3e6" stroke="#122a44" stroke-width="3"/>
+        <rect x="12" y="12" width="156" height="28" rx="6" fill="#ff7a3d"/><text x="90" y="32" text-anchor="middle" class="pav-t">PABELLÓN B</text>
+        <text x="90" y="62" text-anchor="middle" class="pav-s">Aulas de clase</text><text x="90" y="84" text-anchor="middle" class="pav-ip">📱 Equipos móviles: DHCP</text></g>
+      <g class="pav" data-p="2" transform="translate(60,270)"><rect width="180" height="112" rx="10" fill="#e2f6e9" stroke="#122a44" stroke-width="3"/>
+        <rect x="12" y="12" width="156" height="28" rx="6" fill="#1e9e5a"/><text x="90" y="32" text-anchor="middle" class="pav-t">PABELLÓN C</text>
+        <text x="90" y="62" text-anchor="middle" class="pav-s">Sala de cómputo / tablets</text><text x="90" y="84" text-anchor="middle" class="pav-ip">📟 Tablets de alumnos: DHCP</text></g>
+      <g class="pav" data-p="3" transform="translate(520,270)"><rect width="180" height="112" rx="10" fill="#ffe7de" stroke="#122a44" stroke-width="3"/>
+        <rect x="12" y="12" width="156" height="28" rx="6" fill="#e4572e"/><text x="90" y="32" text-anchor="middle" class="pav-t">PABELLÓN D</text>
+        <text x="90" y="62" text-anchor="middle" class="pav-s">Cafetería y visitantes</text><text x="90" y="84" text-anchor="middle" class="pav-ip">☎️ Invitados: DHCP</text></g>
+    </svg>
+    <div id="pavDetalle">👆 Haz clic en un pabellón para ver su subred.</div>
+  </div>
+
+  <div class="paso-panel oculto" id="panel2">
+    <p style="margin-bottom:14px">🧮 <b>Dividir 192.168.1.0/24 en 4 subredes</b> (una por pabellón). Completa los huecos del razonamiento:</p>
+    <p class="frase-hueco">Necesitamos <b>4 subredes</b>. Buscamos el menor número tal que 2<sup>x</sup> ≥ 4 → tomamos prestados <input class="hueco" data-res="2" placeholder="?"> bits de la porción HOST.</p>
+    <p class="frase-hueco">Nueva máscara = 24 + <input class="hueco" data-res="2" placeholder="?"> = /<input class="hueco" data-res="26" placeholder="??"> → en notación completa: <input class="hueco ancho" data-res="255.255.255.192" placeholder="255.255.255.???"></p>
+    <p class="frase-hueco">Quedan <input class="hueco" data-res="6" placeholder="?"> bits para hosts → 2<sup>6</sup> − 2 = <input class="hueco" data-res="62" placeholder="??" style="background:#ffe7de"> hosts útiles por pabellón.</p>
+    <button class="btn btn-verde" id="btnPaso2">✔ Comprobar mi cálculo</button>
+    <div id="tablaSubredes" class="oculto">
+      <h3 style="margin-top:18px;font-size:1rem">🎉 ¡Perfecto! Así quedan las 4 subredes:</h3>
+    </div>
+  </div>
+
+  <div class="paso-panel oculto" id="panel3">
+    <h3 style="font-size:1.05rem;margin-bottom:6px">🎮 Juego: ¿Estática o DHCP?</h3>
+    <p style="margin-bottom:16px">Clasifica cada dispositivo de la escuela. Luego arma la justificación del Plan Maestro.</p>
+    <div class="sticker juego-carta">
+      <div id="juegoCont"></div>
+    </div>
+    <h3 style="font-size:1.05rem;margin:26px 0 10px">✍️ Justificación (elige las palabras correctas):</h3>
+    <p class="frase-hueco">El servidor de la biblioteca usa una IP
+      <select class="sel-frase" id="f1"><option value="">—elige—</option><option value="estatica">ESTÁTICA</option><option value="dhcp">DHCP</option></select>
+      porque
+      <select class="sel-frase" id="f2"><option value="">—elige—</option><option value="ok">todos deben encontrarlo SIEMPRE en la misma dirección</option><option value="mal">su IP cambia cada día por diversión</option></select>.</p>
+    <p class="frase-hueco">Las tablets de los alumnos usan
+      <select class="sel-frase" id="f3"><option value="">—elige—</option><option value="estatica">IP ESTÁTICA</option><option value="dhcp">DHCP</option></select>
+      porque su dirección
+      <select class="sel-frase" id="f4"><option value="">—elige—</option><option value="ok">se asigna y se devuelve automáticamente según quién se conecte</option><option value="mal">queda grabada en piedra para siempre</option></select>.</p>
+    <button class="btn btn-verde" id="btnFrase">✔ Armar mi justificación</button>
+    <div id="fraseOut" style="margin-top:14px"></div>
+  </div>
+
+  <div class="paso-panel oculto" id="panel4">
+    <p style="margin-bottom:14px">🏆 Completa el termómetro de los pasos 1, 2 y 3 para emitir tu certificado y tu tabla del Plan Maestro.</p>
+    <div class="and-controles">
+      <label style="font-weight:700">Tu nombre: <input id="nombreInput" class="campo" style="width:240px" value="As de las Redes"></label>
+      <button class="btn btn-amarillo" id="btnCert" disabled>🎓 Emitir certificado</button>
+      <button class="btn btn-tinta" id="btnPrint">🖨️ Imprimir mi plan</button>
+    </div>
+    <div id="certificado" class="oculto" style="margin-top:20px">
+      <p class="bungee" style="font-size:.8rem;letter-spacing:2px">TALLER DE REDES · MÓDULO 2 · PRODUCTO 2</p>
+      <h3>CERTIFICADO DE MAESTRÍA EN SEGMENTACIÓN</h3>
+      <p>Se otorga a</p>
+      <div id="certNombre">—</div>
+      <p>por diseñar el Plan Maestro de Asignación y Segmentación de la red de la <b>Escuela Rural «Nueva Esperanza»</b>, dominando la Fórmula de Oro <code>2ⁿ − 2</code>.</p>
+      <div id="tablaPlan"></div>
+      <p style="font-size:.85rem;margin-top:10px" id="certFecha"></p>
+      <div class="sello-cert">🏆</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- GUÍA DE BOLSILLO -->
+<section><div class="wrap">
+  <div class="senal reveal" style="text-align:center">
+    <h2>🎒 Guía de bolsillo para llevar a casa</h2>
+  </div>
+  <div class="guia reveal">
+    <span>🌉 Binario: suma de pesos 128…1</span>
+    <span>🚚 ISP → IP pública · Router → IPs privadas</span>
+    <span>🧱 Máscara = frontera del barrio</span>
+    <span>📌 IP estática = equipos críticos</span>
+    <span>🤖 DHCP = visitantes y móviles</span>
+    <span>✨ Hosts útiles = 2ⁿ − 2</span>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <p class="bungee" style="font-size:1.1rem">REDVILLE NETWORK ACADEMY 🌎</p>
+    <p style="margin-top:8px;font-size:.9rem">Taller de consolidación · Módulo 2: Segmentación de la red y asignación eficiente · Nivelado para exploradores de 12 a 14 años.</p>
+    <p style="margin-top:6px;font-size:.8rem;opacity:.75">Recuerda: en clase, el Producto 2 se entrega a mano, en papel milimetrado y con líneas a regla. 📏</p>
+  </div>
+</footer>
+
+<div id="toast">🎖️ ¡Sello ganado!</div>
+
+<script>
+/* ═══════════ UTILIDADES ═══════════ */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const pow2=n=>Math.pow(2,n);
+const fmt=n=>n.toLocaleString('es');
+function norm(s){return String(s||'').trim().toLowerCase().replace(/\s+/g,'');}
+function prefixToOctets(p){return [0,1,2,3].map(i=>{const b=Math.max(0,Math.min(8,p-i*8));return (0xFF<<(8-b))&0xFF;});}
+function ipToInt(ip){return ip.split('.').map(Number).reduce((a,o)=>(a<<8)+o,0)>>>0;}
+function intToIp(n){return [24,16,8,0].map(s=>(n>>>s)&255).join('.');}
+function maskInt(p){return p===0?0:(0xFFFFFFFF<<(32-p))>>>0;}
+function ipToBits(ip){return ipToInt(ip).toString(2).padStart(32,'0');}
+function maskToBits(p){return maskInt(p).toString(2).padStart(32,'0');}
+function validaIp(t){const m=String(t).trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);return m&&m.slice(1).every(o=>+o<=255)?m:null;}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2200);}
+function confeti(){const cols=['#ffc93c','#ff7a3d','#2478d0','#1e9e5a','#e4572e'];for(let i=0;i<46;i++){const c=document.createElement('div');c.className='confeti';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%5];c.style.animationDelay=(Math.random()*.5)+'s';c.style.borderRadius=Math.random()>.5?'50%':'2px';document.body.appendChild(c);setTimeout(()=>c.remove(),2000);}}
+
+/* ═══════════ SELLOS ═══════════ */
+const SELLOS_DEF=[
+ {id:'puente',e:'🌉',t:'Puente cruzado'},{id:'muro',e:'🧱',t:'Muros construidos'},
+ {id:'calle',e:'🛣️',t:'Calle de 32 bits'},{id:'formula',e:'✨',t:'Fórmula de Oro'},
+ {id:'mision',e:'🎖️',t:'Primera misión'},{id:'ingenio',e:'🏅',t:'Ingeniero/a ×6'},
+ {id:'plan',e:'🏆',t:'Plan Maestro'}];
+let SELLOS={};try{SELLOS=JSON.parse(localStorage.getItem('redville-sellos')||'{}');}catch(e){}
+function pintarSellos(){$('#sellos').innerHTML=SELLOS_DEF.map(s=>`<div class="sello ${SELLOS[s.id]?'ganado':''}" title="${s.t}">${SELLOS[s.id]?s.e:'?'}</div>`).join('');}
+function darSello(id){if(SELLOS[id])return;SELLOS[id]=true;try{localStorage.setItem('redville-sellos',JSON.stringify(SELLOS));}catch(e){}
+ const d=SELLOS_DEF.find(s=>s.id===id);toast('🎖️ ¡Sello ganado: '+d.t+'!');pintarSellos();confeti();}
+pintarSellos();
+
+/* ═══════════ HERO BIT-RADIO ═══════════ */
+const hb=$('#heroBits');for(let i=0;i<32;i++){const s=document.createElement('span');s.textContent=Math.round(Math.random());hb.appendChild(s);}
+setInterval(()=>{const c=hb.children,i=Math.floor(Math.random()*32);c[i].textContent=c[i].textContent==='0'?'1':'0';c[i].classList.toggle('on',c[i].textContent==='1');},140);
+
+/* ═══════════ ESTACIÓN 1: PUENTE DE COMPRENSIÓN ═══════════ */
+/* A · Balanza binaria */
+const PESOS=[128,64,32,16,8,4,2,1];
+let balBits=Array(8).fill(0);
+const balEl=$('#balanza');
+PESOS.forEach((w,i)=>{
+ const d=document.createElement('div');d.className='pesa';d.innerHTML='<b>'+w+'</b><small>bit '+(7-i)+' · <span class="bv">0</span></small>';
+ d.addEventListener('click',()=>{balBits[i]=balBits[i]?0:1;pintarBalanza();});
+ balEl.appendChild(d);
+});
+function pintarBalanza(){
+ let total=0;
+ [...balEl.children].forEach((d,i)=>{d.classList.toggle('on',balBits[i]===1);d.querySelector('.bv').textContent=balBits[i];if(balBits[i])total+=PESOS[i];});
+ $('#balBin').textContent=balBits.join('');
+ $('#balDec').textContent=total;
+ return total;
+}
+$('#balLimpiar').addEventListener('click',()=>{balBits=Array(8).fill(0);pintarBalanza();});
+let retosHechos=new Set();
+$$('.reto').forEach(r=>r.addEventListener('click',()=>{
+ const t=+r.dataset.t, total=pintarBalanza();
+ if(total===t){r.classList.add('logrado');retosHechos.add(t);toast('🎯 ¡Lograste formar '+t+'!');
+  if(retosHechos.size===3){$('#retoMsg').textContent='🌟 ¡192.168…! ¿Te suena? Es el inicio del barrio privado que usaremos en todo el taller.';darSello('puente');}
+ }else{toast('🧮 Tu balanza suma '+total+'… enciende o apaga pesas hasta llegar a '+t+'.');}
+}));
+
+/* B1 · Decimal → Binario */
+$('#btnD2B').addEventListener('click',()=>{
+ const v=parseInt($('#d2bIn').value,10), out=$('#d2bOut');
+ if(isNaN(v)||v<0||v>255){out.innerHTML='<p style="color:var(--rojo);font-weight:700">Escribe un número entre 0 y 255 (un octeto).</p>';return;}
+ let rest=v,html='',bits='';
+ PESOS.forEach(w=>{
+  const cabe=rest>=w;
+  html+='<div class="paso-d2b"><span class="chip '+(cabe?'ok-chip':'no-chip')+'">'+w+'</span> ¿cabe en '+rest+'? <b>'+(cabe?'SÍ → escribo 1':'NO → escribo 0')+'</b>'+(cabe?' · sobran '+(rest-w):'')+'</div>';
+  if(cabe){rest-=w;bits+='1';}else bits+='0';
+ });
+ out.innerHTML=html+'<p style="margin-top:10px;font-weight:700">✅ Resultado: <code>'+v+' = '+bits+'</code></p>';
+});
+$('#btnD2B').click();
+
+/* B2 · Binario → Decimal */
+$('#btnB2D').addEventListener('click',()=>{
+ const raw=String($('#b2dIn').value).replace(/\s+/g,''), out=$('#b2dOut');
+ if(!/^[01]{8}$/.test(raw)){out.innerHTML='<p style="color:var(--rojo);font-weight:700">Escribe exactamente 8 caracteres, solo 0 y 1. Ej: 11000000</p>';return;}
+ let total=0,terms=[];
+ [...raw].forEach((b,i)=>{if(b==='1'){total+=PESOS[i];terms.push(PESOS[i]);}});
+ out.innerHTML='<div class="paso-d2b">Encendidos: <b>'+(terms.length?terms.join(' + '):'ninguno')+'</b></div>'+
+ '<p style="margin-top:10px;font-weight:700">✅ Resultado: <code>'+raw+' = '+(terms.length?terms.join(' + ')+' = ':'')+total+'</code></p>';
+});
+$('#btnB2D').click();
+
+/* C · Rayos X de códigos de red */
+function filaBits(bits,clase){return '<div class="bitrow '+clase+'">'+[...bits].map((b,i)=>'<span class="b '+(b==='1'?'uno':'cero')+(i%8===7&&i<31?' sep':'')+'">'+b+'</span>').join('')+'</div>';}
+function filaOctetos(ip){
+ return '<div class="fila-octs">'+ip.split('.').map(o=>{
+  const bits=(+o).toString(2).padStart(8,'0');
+  return '<div class="octbox"><span class="octdec">'+o+'</span><div class="octbits">'+[...bits].map(b=>'<i class="'+(b==='1'?'u':'')+'">'+b+'</i>').join('')+'</div></div>';
+ }).join('')+'</div>';
+}
+$('#btnXray').addEventListener('click',()=>{
+ const ip=$('#xrayIp').value.trim(), p=Math.max(8,Math.min(30,+$('#xrayPref').value||24));
+ const out=$('#xrayOut');
+ if(!validaIp(ip)){out.innerHTML='<p style="color:var(--rojo);font-weight:700">Esa IP no parece válida. Prueba algo como 192.168.1.10</p>';return;}
+ const mB=maskToBits(p);
+ const res=[...ipToBits(ip)].map((b,i)=>b==='1'&&mB[i]==='1'?'1':'0').join('');
+ out.innerHTML=
+  '<div class="fila-tag" style="color:var(--azul)">1️⃣ TU IP · '+ip+' (4 octetos de 8 bits, como aprendiste):</div>'+filaOctetos(ip)+
+  '<div class="fila-tag" style="color:#b8860b">2️⃣ LA MÁSCARA · prefijo /'+p+' = '+prefixToOctets(p).join('.')+' ('+p+' unos contados):</div>'+filaBits(mB,'fila-mask')+
+  '<div class="fila-tag" style="color:var(--verde)">3️⃣ TU RED · IP ∧ MÁSCARA (adelanto de la Estación 3):</div>'+filaBits(res,'fila-res')+
+  '<p style="margin-top:10px;font-weight:700">📍 Vives en la casa <code>'+ip+'</code> dentro del barrio <code>'+intToIp(parseInt(res,2))+'</code>.</p>';
+});
+$('#btnXray').click();
+
+/* D · El viaje ISP → dispositivos */
+const ETAPAS=[
+ {t:'Introducción',g:[],txt:'Observa el mapa completo: la nube de Internet, el proveedor (ISP), tu router y tus dispositivos. Pulsa «Siguiente» para descubrir cómo viaja cada dirección.'},
+ {t:'Etapa 1 · Internet y el ISP',g:['grpInternet','grpIsp','grpLink1'],txt:'🌍 Internet es la gran ciudad: allá afuera <b>solo existen las direcciones PÚBLICAS</b>, únicas en el mundo entero. Tu proveedor de Internet (ISP) es la gran puerta que conecta tu barrio con esa ciudad.'},
+ {t:'Etapa 2 · Una IP pública para el router',g:['grpIsp','grpLink1','grpLink2','grpRouter','grpBadgePub'],txt:'🚪 El ISP le entrega a tu router <b>UNA sola IP pública</b> (en el dibujo: 190.85.20.41), casi siempre por DHCP y de forma temporal. Es como la dirección oficial de tu casa en la gran ciudad: solo el router la conoce.'},
+ {t:'Etapa 3 · El router reparte IPs privadas',g:['grpRouter','grpDevs'],txt:'🏘️ Adentro, el router se convierte en el «alcalde de Redville»: enciende su propio <b>DHCP</b> y reparte direcciones <b>PRIVADAS</b> (192.168.1.x) a cada dispositivo. El pedido se hace en 4 pasos: descubrir → ofrecer → pedir → aceptar. La impresora, como es crítica, se queda con una IP estática 📌.'},
+ {t:'Etapa 4 · NAT: salir con sello público',g:['grpInternet','grpIsp','grpLink1','grpLink2','grpRouter','grpBadgePub','grpDevs','grpNat'],txt:'✉️ Cuando tu tablet quiere hablar con Internet, el router «sella» el sobre con su propia IP pública (<b>NAT</b>). Al volver la respuesta, el router la entrega al dispositivo correcto. ¡Así decenas de equipos pueden compartir una única IP pública!'}];
+let etapaIdx=0;
+function pintarEtapa(){
+ const e=ETAPAS[etapaIdx];
+ $('#viajeSvg').classList.toggle('en-juego',etapaIdx>0);
+ $$('#viajeSvg .etg').forEach(g=>g.classList.remove('foco'));
+ e.g.forEach(id=>{const g=document.getElementById(id);if(g)g.classList.add('foco');});
+ $('#etapaNum').textContent=e.t;
+ $('#etapaTexto').innerHTML=e.txt;
+ $('#etapaPrev').disabled=etapaIdx===0;
+ $('#etapaNext').disabled=etapaIdx===ETAPAS.length-1;
+}
+$('#etapaNext').addEventListener('click',()=>{if(etapaIdx<ETAPAS.length-1){etapaIdx++;pintarEtapa();}});
+$('#etapaPrev').addEventListener('click',()=>{if(etapaIdx>0){etapaIdx--;pintarEtapa();}});
+pintarEtapa();
+
+/* Mini-desafío pública/privada */
+const PPITEMS=[
+ {ip:'8.8.8.8',t:'pub',n:'Es un servidor público de Google: visible para todo Internet.'},
+ {ip:'192.168.1.5',t:'priv',n:'192.168.x.x solo existe dentro de tu barrio (RFC 1918).'},
+ {ip:'10.0.0.12',t:'priv',n:'El bloque 10.0.0.0/8 es un rango privado gigante.'},
+ {ip:'201.234.56.7',t:'pub',n:'No pertenece a ningún rango privado: viaja por Internet.'},
+ {ip:'172.16.3.40',t:'priv',n:'172.16.0.0/12: rango privado de tamaño mediano.'}];
+let ppOK=0,ppVistas=0;
+$('#ppQuiz').innerHTML=PPITEMS.map((it,i)=>'<div class="pp" id="pp'+i+'"><span>'+it.ip+'</span><div class="pp-btns"><button data-v="pub">🌍 Pública</button><button data-v="priv">🔒 Privada</button></div><small class="oculto"></small></div>').join('');
+PPITEMS.forEach((it,i)=>{
+ const card=$('#pp'+i);
+ card.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+  if(card.dataset.done)return;card.dataset.done='1';ppVistas++;
+  const buena=b.dataset.v===it.t;
+  if(buena)ppOK++;
+  card.classList.add(it.t==='pub'?'pub':'priv');
+  card.querySelector('.pp-btns').innerHTML=buena?'✅':'❌ era '+it.n.split(' ')[0];
+  const sm=card.querySelector('small');sm.textContent=(buena?'¡Correcto! ':'Era '+(it.t==='pub'?'PÚBLICA 🌍':'PRIVADA 🔒')+'. ')+it.n;sm.classList.remove('oculto');
+  $('#ppScore').textContent='Aciertos: '+ppOK+' / '+PPITEMS.length;
+  if(ppVistas===PPITEMS.length){toast(ppOK===PPITEMS.length?'🕵️ ¡Ojo clínico de ingeniero/a!':'🔁 ¡Buen intento! Repasa los rangos privados.');if(ppOK===PPITEMS.length)confeti();}
+ }));
+});
+
+/* ═══════════ ESTACIÓN 2: CIUDAD ═══════════ */
+let muros=false;
+$('#btnMuros').addEventListener('click',()=>{
+ muros=!muros;const svg=$('#ciudadSvg');
+ svg.classList.toggle('caos',!muros);svg.classList.toggle('orden',muros);
+ $('#ciudadTitulo').textContent=muros?'🎉 ¡Orden! Ciudad SEGMENTADA':'😱 ¡Caos! Ciudad SIN segmentar';
+ $('#ciudadLista').innerHTML=muros
+  ?'<li>Cada mensaje viaja <b>solo dentro de su barrio</b> (subred).</li><li>Menos ruido = comunicación más rápida y segura.</li><li>Las puertas (routers) conectan barrios con control.</li>'
+  :'<li>El mensaje de UN equipo lo reciben TODOS (broadcast sin control).</li><li>El tráfico y el ruido colapsan la comunicación.</li><li>Nadie sabe quién pertenece a qué zona.</li>';
+ $('#btnMuros').textContent=muros?'💥 ¡Derribar los muros!':'🧱 ¡Construir los muros!';
+ $('#btnMuros').className='btn '+(muros?'btn-gris':'btn-rojo');
+ if(muros)darSello('muro');
+});
+
+/* ═══════════ ESTACIÓN 3: CALLE 32 ═══════════ */
+const calle=$('#calle');
+for(let i=0;i<32;i++){const d=document.createElement('div');d.className='bitcell'+(i>0&&i%8===0?' oct':'');calle.appendChild(d);}
+const EJ='192.168.7.77';
+function pintarCalle(){
+ const p=+$('#pref').value, n=32-p;
+ [...calle.children].forEach((c,i)=>{c.textContent=i<p?'1':'0';c.className='bitcell '+(i<p?'uno':'cero')+(i>0&&i%8===0?' oct':'');});
+ $('#divisor').style.left='calc('+(p/32*100)+'% )';
+ $('#banderin').textContent='/'+p;
+ $('#rdMask').textContent=prefixToOctets(p).join('.');
+ $('#rdPref').textContent='/'+p; $('#rdRed').textContent=p; $('#rdHost').textContent=n;
+ $('#rdUtil').textContent=fmt(pow2(n)-2);
+ const net=(ipToInt(EJ)&maskInt(p))>>>0, bc=(net|(~maskInt(p)>>>0))>>>0;
+ $('#rdEj').textContent='mi barrio es '+intToIp(net)+' 📣 grito en '+intToIp(bc);
+ darSello('calle');
+}
+$('#pref').addEventListener('input',pintarCalle);pintarCalle();
+
+/* Laboratorio AND */
+function correrAnd(){
+ let ip=$('#ipSel').value;
+ if(ip==='custom'){ip=$('#ipCustom').value;if(!validaIp(ip)){toast('🤔 Esa IP no parece válida…');return;}}
+ const p=Math.max(8,Math.min(30,+$('#prefCustom').value||24));
+ const mB=maskToBits(p), res=[...ipToBits(ip)].map((b,i)=>b==='1'&&mB[i]==='1'?'1':'0').join('');
+ const net=intToIp(parseInt(res,2));
+ $('#andBits').innerHTML=
+  '<div class="fila-tag" style="color:var(--azul)">📮 IP ('+ip+'):</div>'+filaBits(ipToBits(ip),'fila-ip')+
+  '<div class="fila-tag" style="color:#b8860b">🧱 MÁSCARA /'+p+' ('+prefixToOctets(p).join('.')+'):</div>'+filaBits(mB,'fila-mask')+
+  '<div class="fila-tag" style="color:var(--verde)">⚡ RESULTADO DEL AND → TU BARRIO:</div>'+filaBits(res,'fila-res');
+ const r=$('#andResult');r.classList.remove('oculto');
+ r.innerHTML='🚪 ¡La puerta se abre hacia la red <code>'+net+'</code>! Todo lo que compartas con ese barrio se queda adentro; el resto… es tu casa. 🏠';
+}
+$('#ipSel').addEventListener('change',()=>$('#ipCustom').classList.toggle('oculto',$('#ipSel').value!=='custom'));
+$('#btnAnd').addEventListener('click',correrAnd);correrAnd();
+
+/* ═══════════ ESTACIÓN 5: FÓRMULA ═══════════ */
+function pintarFormula(){
+ const n=+$('#nRange').value;
+ $('#nVal').textContent=n;
+ $('#powVal').textContent='2^'+n+' = '+fmt(pow2(n));
+ $('#utilVal').textContent=fmt(pow2(n)-2);
+ const s=$('#sillas');s.innerHTML='';
+ if(pow2(n)<=64){for(let i=0;i<pow2(n);i++){const d=document.createElement('div');d.className='silla'+(i===0?' red':i===pow2(n)-1?' bcast':'');s.appendChild(d);}}
+ else{s.innerHTML='<span style="color:#fff;font-weight:700">'+fmt(pow2(n))+' sillas 🤯 (demasiadas para dibujarlas: la primera es RED 🔴 y la última BROADCAST 🟠)</span>';}
+ darSello('formula');
+}
+$('#nRange').addEventListener('input',pintarFormula);pintarFormula();
+$('#potencias').innerHTML=Array.from({length:12},(_,i)=>'<span class="chip">2<sup>'+(i+1)+'</sup> = '+fmt(pow2(i+1))+'</span>').join('');
+
+/* ═══════════ ESTACIÓN 6: MISIONES ═══════════ */
+const MISIONES=[
+ {id:1, emoji:'🌾', nombre:'Cooperativa Agraria del Sur', pais:'Colombia', bandera:'🇨🇴', dev:500, base:'192.168.0.0/16'},
+ {id:2, emoji:'🐟', nombre:'Pesquera del Pacífico',        pais:'Perú',     bandera:'🇵🇪', dev:250, base:'192.168.10.0/24'},
+ {id:3, emoji:'🏦', nombre:'Banco Andino',                 pais:'Ecuador',  bandera:'🇪🇨', dev:120, base:'10.0.0.0/16'},
+ {id:4, emoji:'⛏️', nombre:'Minera Atacama',               pais:'Chile',    bandera:'🇨🇱', dev:60,  base:'192.168.20.0/24'},
+ {id:5, emoji:'🏥', nombre:'Clínica La Esperanza',         pais:'México',   bandera:'🇲🇽', dev:30,  base:'10.10.0.0/16'},
+ {id:6, emoji:'🎓', nombre:'Universidad Nacional',         pais:'Argentina',bandera:'🇦🇷', dev:1000,base:'172.16.0.0/16'},
+ {id:7, emoji:'🚚', nombre:'Transportes del Caribe',       pais:'Colombia', bandera:'🇨🇴', dev:200, base:'192.168.30.0/24'},
+ {id:8, emoji:'🌱', nombre:'Agroindustria del Valle',      pais:'Perú',     bandera:'🇵🇪', dev:14,  base:'10.0.1.0/24'},
+ {id:9, emoji:'⚖️', nombre:'Estudio Jurídico Torres',      pais:'Chile',    bandera:'🇨🇱', dev:6,   base:'192.168.50.0/24'},
+ {id:10,emoji:'☕', nombre:'Cafetería La Montaña',         pais:'Costa Rica',bandera:'🇨🇷',dev:2,   base:'192.168.60.0/24'}];
+let resueltas=[];try{resueltas=JSON.parse(localStorage.getItem('redville-misiones')||'[]');}catch(e){}
+
+function calcMision(m){
+ let n=1;while(pow2(n)-2<m.dev)n++;
+ const prefix=32-n, mask=prefixToOctets(prefix).join('.');
+ const [baseIp]=m.base.split('/');
+ const netInt=ipToInt(baseIp), bcInt=(netInt|(~maskInt(prefix)>>>0))>>>0;
+ return {n,prefix,mask,red:baseIp,bcast:intToIp(bcInt),first:intToIp(netInt+1),last:intToIp(bcInt-1),hosts:pow2(n)-2};
+}
+function tarjetaMision(m){
+ return `<article class="mision sticker reveal ${resueltas.includes(m.id)?'resuelta':''}" id="m${m.id}" data-id="${m.id}">
+  <div class="mision-cabeza">
+    <div class="mision-emoji">${m.emoji}</div>
+    <div style="flex:1">
+      <span class="mision-nombre">Misión ${m.id}: ${m.nombre} <em>${m.bandera} ${m.pais}</em></span>
+      <span class="mision-datos">👥 <b>${fmt(m.dev)}</b> dispositivos · 📦 Bloque base: <code>${m.base}</code></span>
+    </div>
+    <button class="btn btn-azul abrir">📂 Abrir</button>
+  </div>
+  <div class="mision-cuerpo oculto">
+    <p class="reto-txt">🎯 Calcula (¡primero en tu cuaderno, con potencias de 2!) la máscara, la red, el broadcast y el rango de hosts útiles.</p>
+    <div class="campos">
+      <label>1) Nueva máscara necesaria <small>(acepta /26 o 255.255.255.192)</small><input class="campo" data-c="pref" placeholder="/26"></label>
+      <label>2) Dirección de red <input class="campo" data-c="red" placeholder="x.x.x.x"></label>
+      <label>3) Dirección de broadcast <input class="campo" data-c="bcast" placeholder="x.x.x.x"></label>
+      <label>4) Primer host útil <input class="campo" data-c="first" placeholder="x.x.x.x"></label>
+      <label>5) Último host útil <input class="campo" data-c="last" placeholder="x.x.x.x"></label>
+    </div>
+    <div class="mision-acciones">
+      <button class="btn btn-verde revisar">✔ Verificar</button>
+      <button class="btn btn-gris pista">💡 Pista</button>
+      <button class="btn btn-gris sol">🔓 Ver solución</button>
+    </div>
+    <div class="pista-panel oculto"></div>
+    <div class="sol-panel oculto"></div>
+  </div>
+ </article>`;
+}
+$('#listaMisiones').innerHTML=MISIONES.map(tarjetaMision).join('');
+
+function pistaHTML(m,e){
+ let intentos='';
+ for(let k=Math.max(2,e.n-2);k<=e.n;k++){intentos+='<li>2<sup>'+k+'</sup> − 2 = <b>'+fmt(pow2(k)-2)+'</b> '+(pow2(k)-2>=m.dev?'✅ ¡alcanza!':'❌ faltan direcciones')+'</li>';}
+ return `<b>🧭 Razonamiento paso a paso:</b><ol style="margin:8px 0 0 20px">
+ <li>Necesitas <b>${fmt(m.dev)}</b> dispositivos → busca el menor <b>n</b> con 2ⁿ − 2 ≥ ${fmt(m.dev)}.</li>
+ ${intentos}
+ <li>Entonces <b>n = ${e.n}</b> bits de host → la máscara toma 32 − ${e.n} = <b>/${e.prefix}</b>.</li></ol>`;
+}
+function solHTML(m,e){
+ return `<b>✅ Solución oficial:</b><table style="margin-top:8px">
+ <tr><th>Máscara</th><th>Red</th><th>Broadcast</th><th>Rango útil</th><th>Hosts útiles</th></tr>
+ <tr><td>/${e.prefix}<br>${e.mask}</td><td>${e.red}</td><td>${e.bcast}</td><td>${e.first} – ${e.last}</td><td><b>${e.hosts}</b></td></tr></table>`;
+}
+function actContador(){$('#contadorMisiones').textContent='Misiones logradas: '+resueltas.length+' / 10';}
+actContador();
+
+$$('#listaMisiones .mision').forEach(card=>{
+ const id=+card.dataset.id, m=MISIONES.find(x=>x.id===id), e=calcMision(m);
+ card.querySelector('.abrir').addEventListener('click',function(){
+  const b=card.querySelector('.mision-cuerpo');b.classList.toggle('oculto');
+  this.textContent=b.classList.contains('oculto')?'📂 Abrir':'📁 Cerrar';
+ });
+ card.querySelector('.pista').addEventListener('click',()=>{const p=card.querySelector('.pista-panel');p.innerHTML=pistaHTML(m,e);p.classList.remove('oculto');});
+ card.querySelector('.sol').addEventListener('click',()=>{const s=card.querySelector('.sol-panel');s.innerHTML=solHTML(m,e);s.classList.remove('oculto');});
+ card.querySelector('.revisar').addEventListener('click',()=>{
+  const get=c=>card.querySelector('[data-c="'+c+'"]');
+  const checks={
+   pref:v=>[String(e.prefix),'/'+e.prefix,e.mask].includes(v),
+   red:v=>v===e.red, bcast:v=>v===e.bcast, first:v=>v===e.first, last:v=>v===e.last
+  };
+  let todas=true;
+  Object.keys(checks).forEach(c=>{
+   const inp=get(c), ok=checks[c](norm(inp.value));
+   inp.classList.toggle('ok',ok);inp.classList.toggle('bad',!ok);
+   if(!ok)todas=false;
+  });
+  if(todas){
+   card.classList.add('resuelta');
+   if(!resueltas.includes(id)){resueltas.push(id);try{localStorage.setItem('redville-misiones',JSON.stringify(resueltas));}catch(e){}}
+   actContador();toast('🎉 ¡Misión '+id+' resuelta como un profesional!');confeti();
+   darSello('mision'); if(resueltas.length>=6)darSello('ingenio');
+  }else{toast('🔍 Revisa los campos en rojo… ¡tú puedes!');}
+ });
+});
+
+/* ═══════════ ESTACIÓN 7: PLAN MAESTRO ═══════════ */
+const SUBREDES=[
+ {p:'Pabellón A · Administración y Biblioteca', red:'192.168.1.0',   bcast:'192.168.1.63',  rango:'192.168.1.1 – 192.168.1.62'},
+ {p:'Pabellón B · Aulas de clase',              red:'192.168.1.64',  bcast:'192.168.1.127', rango:'192.168.1.65 – 192.168.1.126'},
+ {p:'Pabellón C · Sala de cómputo / tablets',   red:'192.168.1.128', bcast:'192.168.1.191', rango:'192.168.1.129 – 192.168.1.190'},
+ {p:'Pabellón D · Cafetería y visitantes',      red:'192.168.1.192', bcast:'192.168.1.255', rango:'192.168.1.193 – 192.168.1.254'}];
+const DETALLE=[
+ '<b>Subred 1:</b> red <code>192.168.1.0/26</code> · broadcast <code>192.168.1.63</code> · hosts útiles <code>192.168.1.1 – .62</code> (62 disponibles). Aquí vive el <b>servidor de la biblioteca con IP estática</b> 🖥️.',
+ '<b>Subred 2:</b> red <code>192.168.1.64/26</code> · broadcast <code>192.168.1.127</code> · rango <code>.65 – .126</code>. Aulas: equipos que cambian de aula → DHCP.',
+ '<b>Subred 3:</b> red <code>192.168.1.128/26</code> · broadcast <code>192.168.1.191</code> · rango <code>.129 – .190</code>. Las tablets de los alumnos reciben IP del robot DHCP 🤖.',
+ '<b>Subred 4:</b> red <code>192.168.1.192/26</code> · broadcast <code>192.168.1.255</code> · rango <code>.193 – .254</code>. Visitantes de la cafetería: IPs de corta duración ⏳.'];
+let exploradas=new Set(), paso2ok=false, juegoOK=false, fraseOK=false;
+
+$$('.paso-tab').forEach(t=>t.addEventListener('click',()=>{
+ $$('.paso-tab').forEach(x=>x.classList.remove('activa'));t.classList.add('activa');
+ for(let i=1;i<=4;i++)$('#panel'+i).classList.toggle('oculto',i!==+t.dataset.paso);
+}));
+
+$$('.pav').forEach(p=>p.addEventListener('click',()=>{
+ $$('.pav').forEach(x=>x.classList.remove('activa'));p.classList.add('activa');
+ const i=+p.dataset.p;
+ $('#pavDetalle').innerHTML=DETALLE[i]+'<br><span style="font-size:.85rem;color:var(--tiza)">Máscara de las 4 subredes: <code>/26 = 255.255.255.192</code> · 62 hosts útiles cada una.</span>';
+ exploradas.add(i);
+ if(exploradas.size===4){$('#t1').classList.add('listo');toast('🗺️ ¡Topología explorada por completo!');}
+ chequearPlan();
+}));
+
+$('#btnPaso2').addEventListener('click',()=>{
+ let ok=true;
+ $$('#panel2 .hueco').forEach(h=>{const bueno=norm(h.value)===h.dataset.res;h.classList.toggle('ok',bueno);h.classList.toggle('bad',!bueno);if(!bueno)ok=false;});
+ if(ok){
+  paso2ok=true;$('#t2').classList.add('listo');
+  const t=$('#tablaSubredes');t.classList.remove('oculto');
+  if(!t.querySelector('table')){
+   t.insertAdjacentHTML('beforeend','<table><tr><th>Subred</th><th>Dirección de red</th><th>Máscara</th><th>Broadcast</th><th>Rango de hosts útiles</th><th>Hosts</th></tr>'+
+    SUBREDES.map(s=>'<tr><td>'+s.p+'</td><td>'+s.red+'</td><td>/26<br>255.255.255.192</td><td>'+s.bcast+'</td><td>'+s.rango+'</td><td><b>62</b></td></tr>').join('')+'</table>');
+  }
+  toast('🧮 ¡Cálculo perfecto: 4 subredes /26!');confeti();
+ }else{toast('🔍 Algún hueco no cuadra… ¡revisa tus potencias de 2!');}
+ chequearPlan();
+});
+
+const DEVS=[
+ {n:'Servidor de la biblioteca',e:'🖥️',r:'estatica',x:'Todos deben encontrarlo SIEMPRE en la misma dirección para pedirle libros.'},
+ {n:'Tablets del salón (60)',e:'📱',r:'dhcp',x:'Van y vienen con cada estudiante; asignar 60 IP a mano sería eterno.'},
+ {n:'Impresora de red',e:'🖨️',r:'estatica',x:'Las computadoras la buscan en una dirección fija para imprimir.'},
+ {n:'Router de la escuela',e:'📡',r:'estatica',x:'Es la puerta de salida: su IP fija se escribe en la configuración de todos.'},
+ {n:'Celulares de los visitantes',e:'📲',r:'dhcp',x:'Llegan por un rato y se van; la IP regresa a la caja del robot.'},
+ {n:'Portátiles de los docentes',e:'💻',r:'dhcp',x:'Se conectan en aulas distintas según el día.'},
+ {n:'Cámara de seguridad',e:'📹',r:'estatica',x:'El sistema de vigilancia la busca siempre en el mismo lugar.'},
+ {n:'Tablet prestada por un día',e:'⏱️',r:'dhcp',x:'Es un préstamo temporal: alquiler, no compra.'}];
+let juegoOrden=[...DEVS].sort(()=>Math.random()-.5), juegoIdx=0, aciertos=0;
+function pintarJuego(){
+ const c=$('#juegoCont');
+ if(juegoIdx>=juegoOrden.length){
+  juegoOK=true;$('#t3').classList.add('listo');
+  c.innerHTML='<p style="font-size:1.3rem" class="bungee">🏁 ¡Clasificación completa!</p><p>Aciertos: <b>'+aciertos+' / '+DEVS.length+'</b>'+(aciertos===DEVS.length?' · ¡PERFECTO! 🌟':' · ¡Buen intento, repasa y vuelve a jugar!')+'</p><button class="btn btn-azul" id="otraVez">🔁 Jugar de nuevo</button>';
+  $('#otraVez').addEventListener('click',()=>{juegoOrden=[...DEVS].sort(()=>Math.random()-.5);juegoIdx=0;aciertos=0;pintarJuego();});
+  chequearPlan();return;
+ }
+ const d=juegoOrden[juegoIdx];
+ c.innerHTML='<p style="font-size:.85rem;color:var(--tiza)">Dispositivo '+(juegoIdx+1)+' de '+DEVS.length+' · Aciertos: '+aciertos+'</p>'+
+  '<div class="juego-dev"><span class="emo">'+d.e+'</span>'+d.n+'</div>'+
+  '<div class="juego-btns"><button class="btn" style="background:var(--naranja);color:#fff" id="bEst">📌 IP ESTÁTICA</button>'+
+  '<button class="btn btn-verde" id="bDhcp">🤖 DHCP</button></div>'+
+  '<div class="juego-feedback" id="jfb"></div>';
+ $('#bEst').addEventListener('click',()=>responder('estatica',d));
+ $('#bDhcp').addEventListener('click',()=>responder('dhcp',d));
+}
+function responder(op,d){
+ const fb=$('#jfb');const buena=op===d.r;
+ if(buena)aciertos++;
+ fb.innerHTML=(buena?'✅ ¡Correcto! ':'❌ Uy… lo correcto era <b>'+(d.r==='estatica'?'IP ESTÁTICA':'DHCP')+'</b>. ')+'<span style="font-weight:400">'+d.x+'</span><br><button class="btn btn-gris" id="bNext" style="margin-top:8px">Siguiente ➜</button>';
+ $('#bEst').disabled=true;$('#bDhcp').disabled=true;
+ $('#bNext').addEventListener('click',()=>{juegoIdx++;pintarJuego();});
+}
+pintarJuego();
+
+$('#btnFrase').addEventListener('click',()=>{
+ const v=[['f1','estatica'],['f2','ok'],['f3','dhcp'],['f4','ok']];
+ let ok=true;
+ v.forEach(([id,val])=>{const s=$('#'+id);const b=s.value===val;s.classList.toggle('ok',b);s.classList.toggle('bad',!b);if(!b)ok=false;});
+ const out=$('#fraseOut');
+ if(ok){fraseOK=true;
+  out.innerHTML='<div class="sol-panel" style="margin-top:0">📝 <b>Tu justificación del Plan Maestro:</b><br>«El servidor de la biblioteca usa una IP <b>estática</b> porque todos deben encontrarlo siempre en la misma dirección. Las tablets de los alumnos usan <b>DHCP</b> porque su dirección se asigna y se devuelve automáticamente según quién se conecte.»</div>';
+  toast('✍️ ¡Justificación de ingeniero/a!');confeti();
+ }else{out.innerHTML='';toast('🤔 Revisa las opciones marcadas en rojo.');}
+ chequearPlan();
+});
+
+function planOK(){return exploradas.size===4&&paso2ok&&juegoOK&&fraseOK;}
+function chequearPlan(){
+ $('#btnCert').disabled=!planOK();
+ if(planOK())darSello('plan');
+}
+chequearPlan();
+
+$('#btnCert').addEventListener('click',()=>{
+ $('#certificado').classList.remove('oculto');
+ $('#certNombre').textContent=$('#nombreInput').value||'As de las Redes';
+ $('#certFecha').textContent='Emitido el '+new Date().toLocaleDateString('es',{day:'numeric',month:'long',year:'numeric'})+' · Redville Network Academy';
+ $('#tablaPlan').innerHTML='<table><tr><th>Pabellón</th><th>Red</th><th>Máscara</th><th>Broadcast</th><th>Rango útil</th></tr>'+
+  SUBREDES.map(s=>'<tr><td>'+s.p+'</td><td>'+s.red+'</td><td>/26 · 255.255.255.192</td><td>'+s.bcast+'</td><td>'+s.rango+'</td></tr>').join('')+'</table>';
+ confeti();toast('🏆 ¡Certificado emitido!');
+});
+$('#btnPrint').addEventListener('click',()=>{
+ if($('#certificado').classList.contains('oculto')){toast('Primero emite tu certificado 🎓');return;}
+ window.print();
+});
+
+/* ═══════════ REVELAR AL HACER SCROLL ═══════════ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+$$('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
